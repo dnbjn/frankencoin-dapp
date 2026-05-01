@@ -6,7 +6,7 @@ import { Address, isAddress, zeroAddress } from "viem";
 import { useEffect, useState } from "react";
 import SavingsDetailsCard from "./SavingsDetailsCard";
 import { readContract } from "wagmi/actions";
-import { WAGMI_CHAINS, WAGMI_CONFIG } from "../../app.config";
+import { WAGMI_CHAINS, WAGMI_CONFIG, SAVINGS_DEFAULT_REFERRAL_FEE_PPM, SAVINGS_DEFAULT_REFERRER } from "../../app.config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/redux.store";
 import SavingsActionInterest from "./SavingsActionInterest";
@@ -75,12 +75,16 @@ export default function SavingsInteractionCard() {
 		if (queryReferrer != undefined && queryReferrer.length != 0) {
 			if (isAddress(queryReferrer)) {
 				setNewReferrer(queryReferrer);
+				if (queryReferralFeePPM != undefined && queryReferralFeePPM.length != 0 && BigInt(queryReferralFeePPM) > 0n) {
+					setNewReferralFeePPM(BigInt(queryReferralFeePPM));
+				}
+				return;
 			}
 		}
-		if (queryReferralFeePPM != undefined && queryReferralFeePPM.length != 0) {
-			if (BigInt(queryReferralFeePPM) > 0n) {
-				setNewReferralFeePPM(BigInt(queryReferralFeePPM));
-			}
+		// Fall back to hardcoded default referrer
+		if (isAddress(SAVINGS_DEFAULT_REFERRER) && SAVINGS_DEFAULT_REFERRER !== zeroAddress) {
+			setNewReferrer(SAVINGS_DEFAULT_REFERRER);
+			setNewReferralFeePPM(SAVINGS_DEFAULT_REFERRAL_FEE_PPM);
 		}
 	}, [queryReferrer, queryReferralFeePPM]);
 
