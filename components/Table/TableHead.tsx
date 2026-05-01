@@ -18,7 +18,7 @@ export default function TableHeader({ headers, subHeaders, actionCol, colSpan, t
 	};
 
 	return (
-		<div className="items-center justify-between rounded-t-lg bg-table-header-primary py-4 px-8 md:flex xl:px-12">
+		<div className="items-center justify-between rounded-t-lg bg-table-header-primary py-4 px-8 md:flex xl:px-12 border-b border-card-body-seperator">
 			{/* @dev: this is desktop view */}
 			<div className={`max-md:hidden pl-8 flex-grow grid-cols-2 md:grid md:grid-cols-${colSpan || headers.length}`}>
 				{headers.map((header, i) => (
@@ -33,8 +33,7 @@ export default function TableHeader({ headers, subHeaders, actionCol, colSpan, t
 						{tab === header ? (
 							<FontAwesomeIcon
 								icon={reverse ? faArrowUpShortWide : faArrowDownWideShort}
-								className="ml-2 cursor-pointer"
-								color="#092f62"
+								className="ml-2 cursor-pointer text-text-active"
 							/>
 						) : null}
 					</div>

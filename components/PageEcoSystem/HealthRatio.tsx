@@ -7,6 +7,9 @@ import { PriceHistoryRatio } from "@frankencoin/api";
 import { formatCurrency } from "@utils";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+const cssVar = (name: string) =>
+	getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
 type ChartData = {
 	timestamp: number;
 	value: number;
@@ -54,8 +57,8 @@ export default function HealthRatio() {
 	};
 
 	const barPct = Math.min(currentPct / 3, 100);
-	const healthColor = currentPct >= 150 ? "text-green-500" : currentPct >= 100 ? "text-amber-500" : "text-red-500";
-	const barColor = currentPct >= 150 ? "bg-green-500" : currentPct >= 100 ? "bg-amber-500" : "bg-red-500";
+	const healthColor = currentPct >= 150 ? "text-status-success" : currentPct >= 100 ? "text-status-warning" : "text-status-danger";
+	const barColor = currentPct >= 150 ? "bg-status-success" : currentPct >= 100 ? "bg-status-warning" : "bg-status-danger";
 
 	return (
 		<AppCard>
@@ -161,7 +164,7 @@ export default function HealthRatio() {
 								yaxis: [
 									{
 										y: 100,
-										borderColor: "#ef4444",
+										borderColor: cssVar("--color-status-danger"),
 										strokeDashArray: 4,
 									},
 								],

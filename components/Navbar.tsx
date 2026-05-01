@@ -1,6 +1,7 @@
 import Link from "next/link";
 import WalletConnect from "./WalletConnect";
 import NavButton from "./NavButton";
+import DarkModeToggle from "./DarkModeToggle";
 import { CONFIG } from "../app.config";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -123,7 +124,8 @@ export default function Navbar() {
 					</div>
 
 					{/* Right: desktop wallet / mobile hamburger */}
-					<div className="flex justify-end items-center">
+					<div className="flex justify-end items-center gap-2">
+						<DarkModeToggle />
 						<div className="hidden md:flex">
 							<WalletConnect />
 						</div>

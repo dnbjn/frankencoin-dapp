@@ -25,10 +25,7 @@ NEXT_PUBLIC_LANDINGPAGE_URL=https://frankencoin.com
 NEXT_PUBLIC_APP_URL=https://app.frankencoin.com
 NEXT_PUBLIC_API_URL=https://api.frankencoin.com
 NEXT_PUBLIC_PONDER_URL=https://ponder.frankencoin.com
-NEXT_PUBLIC_CHAIN_NAME=mainnet
 NEXT_PUBLIC_WAGMI_ID=your_walletconnect_project_id
-NEXT_PUBLIC_RPC_URL_MAINNET=your_rpc_url
-NEXT_PUBLIC_RPC_URL_POLYGON=your_polygon_rpc_url
 ```
 
 ## Development

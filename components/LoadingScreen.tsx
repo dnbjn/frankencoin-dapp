@@ -49,10 +49,10 @@ export default function LoadingScreen({ title = "Frankencoin is loading...", loa
 								<li key={item.id} className="flex items-center gap-2">
 									<span
 										className={`inline-block w-2 h-2 rounded-full ${
-											item.isLoaded ? "bg-green-500" : "bg-gray-400 animate-pulse"
+											item.isLoaded ? "bg-status-success" : "bg-card-input-empty animate-pulse"
 										}`}
 									/>
-									<span className={item.isLoaded ? "text-green-500" : "text-text-secondary"}>{item.title}</span>
+									<span className={item.isLoaded ? "text-status-success" : "text-text-secondary"}>{item.title}</span>
 								</li>
 							))}
 						</ul>
@@ -86,7 +86,7 @@ export function SubmitIssue() {
 	const isTestnet = process.env.NEXT_PUBLIC_PROFILE == "testnet";
 
 	return (
-		<ul className="flex items-center gap-8 text-layout-primary">
+		<ul className="flex items-center gap-8 text-white">
 			<li>
 				<FooterButton link={SOCIAL.Github_dapp_new_issue} text="Submit an Issue" icon={faGithub} />
 			</li>

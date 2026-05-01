@@ -294,14 +294,14 @@ export default function EquityInteractionWithWFPSRedeem({ tokenFromTo, setTokenF
 				<AppBox>
 					<DisplayLabel label="Holding Duration WFPS" />
 					<DisplayOutputAlignedRight
-						textColorOutput={!poolStats.equityCanRedeem ? "text-red-500" : undefined}
+						textColorOutput={!poolStats.equityCanRedeem ? "text-status-danger" : undefined}
 						output={wfpsHolding > 0 && wfpsHolding < 86_400 * 365 * 10 ? formatDuration(wfpsHolding) : "-"}
 					/>
 				</AppBox>
 				<AppBox className="flex-1">
 					<DisplayLabel label="Can redeem after" />
 					<DisplayOutputAlignedRight
-						textColorOutput={!poolStats.equityCanRedeem ? "text-red-500" : undefined}
+						textColorOutput={!poolStats.equityCanRedeem ? "text-status-danger" : undefined}
 						output={formatDuration(redeemLeft)}
 					/>
 				</AppBox>

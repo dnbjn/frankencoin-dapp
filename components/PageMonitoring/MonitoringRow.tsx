@@ -42,12 +42,12 @@ export default function MonitoringRow({ headers, tab, position }: Props) {
 	const collateralBalanceNumber: number = parseInt(formatUnits(BigInt(position.collateralBalance), digits - 2)) / 100;
 	const challengesRatioPct: number = Math.round((positionChallengesActiveCollateral / collateralBalanceNumber) * 100);
 
-	const collColor = liquidationPct < 110 ? "text-red-500" : liquidationPct <= 120 ? "text-orange-400" : "text-green-500";
+	const collColor = liquidationPct < 110 ? "text-status-danger" : liquidationPct <= 120 ? "text-status-orange" : "text-status-success";
 	const rowBg =
 		liquidationPct < 110
-			? "bg-[#FEF2F2] border-l-[3px] border-l-[#E5484D]"
+			? "bg-status-danger-muted border-l-[3px] border-l-status-danger"
 			: liquidationPct <= 120
-			? "bg-[#FFFBEB] border-l-[3px] border-l-[#F59E0B]"
+			? "bg-status-warning-muted border-l-[3px] border-l-status-warning"
 			: "";
 
 	return (

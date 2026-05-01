@@ -1,7 +1,7 @@
 "use client";
 
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { cookieStorage, createStorage, http } from "@wagmi/core";
+import { cookieStorage, createStorage, http, fallback } from "@wagmi/core";
 import { injected, coinbaseWallet, safe } from "@wagmi/connectors";
 import { mainnet, polygon, Chain, arbitrum, optimism, avalanche, gnosis, sonic, base, AppKitNetwork } from "@reown/appkit/networks";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
@@ -69,11 +69,23 @@ export const WAGMI_METADATA = {
 export const WAGMI_ADAPTER = new WagmiAdapter({
 	networks: WAGMI_CHAINS,
 	transports: {
-		[mainnet.id]: http(`https://eth-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
-		[polygon.id]: http(`https://polygon-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+		[mainnet.id]: fallback([
+			http(`https://eth-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http("https://nrs.pub/1"),
+		]),
+		[polygon.id]: fallback([
+			http(`https://polygon-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http("https://nrs.pub/137"),
+		]),
 		[optimism.id]: http(`https://opt-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
-		[arbitrum.id]: http(`https://arb-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
-		[base.id]: http(`https://base-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+		[arbitrum.id]: fallback([
+			http(`https://arb-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http("https://nrs.pub/42161"),
+		]),
+		[base.id]: fallback([
+			http(`https://base-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http(`https://nrs.pub/8453`),
+		]),
 		[avalanche.id]: http(`https://avax-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
 		[gnosis.id]: http(`https://gnosis-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
 		[sonic.id]: http(`https://sonic-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),

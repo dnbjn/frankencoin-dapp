@@ -180,8 +180,8 @@ function LayoutTab() {
 					<AppTitle
 						title="With Multiple Badges"
 						badges={[
-							{ label: "v2", className: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200" },
-							{ label: "Active", className: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200" },
+							{ label: "v2", className: "bg-card-content-primary text-text-active" },
+							{ label: "Active", className: "bg-card-content-primary text-text-success" },
 						]}
 					/>
 					<AppTitle

@@ -57,7 +57,7 @@ export default function AppButtonSecondary({
 			{error ? (
 				<div className="flex my-2 px-3.5 text-text-warning">{error}</div>
 			) : warning ? (
-				<div className="flex my-2 px-3.5 text-amber-500">{warning}</div>
+				<div className="flex my-2 px-3.5 text-status-warning">{warning}</div>
 			) : (
 				<div className="flex my-2 px-3.5">{note}</div>
 			)}

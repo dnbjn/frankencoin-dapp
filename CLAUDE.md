@@ -51,9 +51,7 @@ yarn lint:fix     # Format with Prettier
 
 Copy `.env.example` to `.env.local` and configure:
 
--   `NEXT_PUBLIC_CHAIN_NAME` - `testnet`
 -   `NEXT_PUBLIC_WAGMI_ID` - WalletConnect project ID
--   `NEXT_PUBLIC_RPC_URL_MAINNET` - Ethereum RPC URL
 
 ## Code Conventions
 

@@ -146,32 +146,31 @@ export default function TokenInputSelect({
 								}),
 								dropdownIndicator: (baseStyles) => ({
 									...baseStyles,
-									color: "#272B38",
+									color: "var(--color-text-secondary)",
 								}),
 								control: (baseStyles, state) => ({
 									...baseStyles,
-									backgroundColor: state.isFocused ? "#EAEBF0" : "#FFFFFF", // background of container
-									borderRadius: "0.5rem", // This makes the main control round
-									borderColor: state.isFocused ? "#DFE0E6" : "#F0F1F5",
+									backgroundColor: state.isFocused ? "var(--color-menu-active)" : "var(--color-card-body-primary)",
+									borderRadius: "0.5rem",
+									borderColor: "var(--color-card-input-border)",
 									borderWidth: "0.1rem",
 									boxShadow: "0 1px 4px rgba(0, 0, 0, 0.04)",
 								}),
 								option: (baseStyles, state) => ({
 									...baseStyles,
-									backgroundColor: state.isFocused ? "#F5F6F9" : "transparent", // single option in option menu
-									color: state.isFocused ? "#092f62" : "#092f62", // text color from option menu
+									backgroundColor: state.isFocused ? "var(--color-card-content-primary)" : "transparent",
+									color: "var(--color-text-primary)",
 								}),
 								singleValue: (baseStyles) => ({
 									...baseStyles,
-									color: "#272B38", // text color of selected value in control container
-									borderRadius: "0.5rem", // This makes the main control rounder
-									boxShadow: "2", // Remove the focus shadow
+									color: "var(--color-text-primary)",
+									borderRadius: "0.5rem",
 								}),
 								menu: (baseStyles) => ({
 									...baseStyles,
-									backgroundColor: "#FFFFFF",
-									borderRadius: "0.5rem", // This rounds the dropdown menu
-									overflow: "hidden", // This ensures the content doesn't overflow the rounded corners
+									backgroundColor: "var(--color-card-body-primary)",
+									borderRadius: "0.5rem",
+									overflow: "hidden",
 								}),
 							}}
 						/>

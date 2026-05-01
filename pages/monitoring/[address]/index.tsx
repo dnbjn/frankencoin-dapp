@@ -76,9 +76,9 @@ export default function PositionDetail() {
 			: null;
 
 	const statusBadge = () => {
-		if (position.closed) return { label: "Closed", cls: "bg-red-500/20 text-red-400" };
-		if (isSubjectToCooldown()) return { label: "Cooldown", cls: "bg-amber-500/20 text-amber-400" };
-		return { label: "Active", cls: "bg-green-500/20 text-green-400" };
+		if (position.closed) return { label: "Closed", cls: "bg-status-danger-muted text-status-danger" };
+		if (isSubjectToCooldown()) return { label: "Cooldown", cls: "bg-status-warning-muted text-status-warning" };
+		return { label: "Active", cls: "bg-status-success-muted text-status-success" };
 	};
 	const status = statusBadge();
 
@@ -95,8 +95,8 @@ export default function PositionDetail() {
 					subtitle={`Position details of ${position.position}.`}
 					badges={[
 						{ label: status.label, className: status.cls },
-						{ label: `V${position.version}`, className: "bg-blue-500/20 text-blue-400" },
-						...(position.isClone ? [{ label: "Clone", className: "bg-purple-500/20 text-purple-400" }] : []),
+						{ label: `V${position.version}`, className: "bg-status-info-muted text-status-info" },
+						...(position.isClone ? [{ label: "Clone", className: "bg-status-purple-muted text-status-purple" }] : []),
 					]}
 					actions={
 						<div className="flex flex-wrap gap-4 text-sm">
@@ -139,7 +139,7 @@ export default function PositionDetail() {
 								{formatCurrency(formatUnits(BigInt(position.price), priceDigit))} ZCHF
 							</StatRow>
 							<StatRow label="Nominal LTV">
-								<span className={nominalLTV > 90 ? "text-red-400" : nominalLTV > 80 ? "text-amber-400" : "text-green-400"}>
+								<span className={nominalLTV > 90 ? "text-status-danger" : nominalLTV > 80 ? "text-status-warning" : "text-status-success"}>
 									{formatCurrency(nominalLTV, 2, 2)}%
 								</span>
 							</StatRow>
@@ -160,13 +160,13 @@ export default function PositionDetail() {
 							<div className="text-base font-bold mb-1">Lifecycle</div>
 							<StatRow label="Start">{formatDateTime(position.isOriginal ? position.start : position.created)}</StatRow>
 							<StatRow label="Expiration">
-								<span className={position.closed ? "text-red-400" : ""}>
+								<span className={position.closed ? "text-status-danger" : ""}>
 									{position.closed ? "Closed" : formatDateTime(position.expiration)}
 								</span>
 							</StatRow>
 							{isSubjectToCooldown() && (
 								<StatRow label="Cooldown Until">
-									<span className="text-amber-400">{formatDateTime(position.cooldown)}</span>
+									<span className="text-status-warning">{formatDateTime(position.cooldown)}</span>
 								</StatRow>
 							)}
 						</div>
@@ -175,7 +175,7 @@ export default function PositionDetail() {
 					{isSubjectToCooldown() && (
 						<AppCard>
 							<div className="gap-2">
-								<div className="text-base font-bold text-amber-400 mb-1">Cooldown Active</div>
+								<div className="text-base font-bold text-status-warning mb-1">Cooldown Active</div>
 								<p className="text-text-secondary text-sm leading-relaxed">
 									The owner recently raised the liquidation price. This position is in a cooldown period until{" "}
 									<span className="text-text-primary font-medium">{formatDateTime(position.cooldown)}</span>. During this
@@ -196,7 +196,7 @@ export default function PositionDetail() {
 										label: String(challengesActive.length),
 										className:
 											challengesActive.length > 0
-												? "bg-red-500/20 text-red-400"
+												? "bg-status-danger-muted text-status-danger"
 												: "bg-card-content-primary text-text-secondary",
 									},
 								]}

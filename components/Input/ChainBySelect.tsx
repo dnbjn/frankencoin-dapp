@@ -56,29 +56,29 @@ export default function ChainBySelect({
 					}),
 					dropdownIndicator: (baseStyles) => ({
 						...baseStyles,
-						color: "#272B38",
+						color: "var(--color-text-secondary)",
 					}),
-					control: (baseStyles, state) => ({
+					control: (baseStyles) => ({
 						...baseStyles,
-						backgroundColor: invertColors ? "#FFFFFF" : "#F5F6F9",
-						borderRadius: "0.5rem", // This makes the main control rounder
+						backgroundColor: invertColors ? "var(--color-card-body-primary)" : "var(--color-card-content-primary)",
+						borderRadius: "0.5rem",
 						borderWidth: "0",
-						boxShadow: "none", // Remove the focus shadow
+						boxShadow: "none",
 					}),
 					option: (baseStyles, state) => ({
 						...baseStyles,
-						backgroundColor: state.data.value == chain ? "#EAEBF0" : "transparent",
-						color: state.data.value == chain ? "#272B38" : "#272B38", // text color from option menu
+						backgroundColor: state.data.value == chain ? "var(--color-menu-active)" : "transparent",
+						color: "var(--color-text-primary)",
 					}),
 					singleValue: (baseStyles) => ({
 						...baseStyles,
-						color: "#272B38", // text color of selected value
+						color: "var(--color-text-primary)",
 					}),
 					menu: (baseStyles) => ({
 						...baseStyles,
-						backgroundColor: "#ffffff",
-						borderRadius: "0.5rem", // This rounds the dropdown menu
-						overflow: "hidden", // This ensures the content doesn't overflow the rounded corners
+						backgroundColor: "var(--color-card-body-primary)",
+						borderRadius: "0.5rem",
+						overflow: "hidden",
 					}),
 				}}
 				components={{

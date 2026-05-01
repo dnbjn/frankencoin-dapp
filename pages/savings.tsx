@@ -98,9 +98,9 @@ export default function SavingsPage() {
 			<SavingsInteractionCard />
 
 			<div className="text-text-secondary">
-				Alternatively, you can also earn a yield by lending on
+				Alternatively, you can also earn a yield by lending on&nbsp;
 				<AppLink
-					label={" Morpho"}
+					label={"Morpho"}
 					href={"https://app.morpho.org/ethereum/earn?assetIdsFilter=ecc8bd13-eab5-4c7b-97e1-ba23d58f8cd3"}
 					external={true}
 					className=""
@@ -110,8 +110,8 @@ export default function SavingsPage() {
 
 			<AppTitle title="Yearly Accounts">
 				<div className={`text-text-secondary`}>
-					The yearly interest income of the current account. See also the
-					<AppLink className="" label={" report page"} href={`/report`} />.
+					The yearly interest income of the current account. See also the&nbsp;
+					<AppLink className="" label={"report page"} href={`/report`} />.
 				</div>
 			</AppTitle>
 			<ReportsYearlyTable activity={account == undefined || account == zeroAddress ? [] : activities} />

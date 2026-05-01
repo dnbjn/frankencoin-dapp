@@ -33,7 +33,7 @@ export default function AppTitle({
 	className,
 	classNameTitle,
 	badge,
-	badgeColor = "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200",
+	badgeColor = "bg-card-content-primary text-text-secondary",
 	badges,
 	subtitle,
 	actions,

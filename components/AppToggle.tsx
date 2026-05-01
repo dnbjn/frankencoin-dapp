@@ -17,7 +17,7 @@ export default function AppToggle({ label, enabled = false, disabled, onChange =
 				} ${!disabled && enabled ? "bg-button-default" : "bg-card-input-border"}`}
 			>
 				<span
-					className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300 ${
+					className={`inline-block h-4 w-4 transform rounded-full bg-layout-primary border border-card-body-seperator transition-transform duration-300 ${
 						enabled ? "translate-x-6" : "translate-x-1"
 					}`}
 				/>

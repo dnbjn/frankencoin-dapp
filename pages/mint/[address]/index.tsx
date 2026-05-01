@@ -182,10 +182,10 @@ export default function PositionBorrow({}) {
 	const positionExplorerUrl = useContractUrl(String(addressQuery));
 	const isCooldown = position.start * 1000 < now && position.cooldown > now;
 	const positionStatus = position.closed
-		? { label: "Closed", cls: "bg-red-500/20 text-red-400" }
+		? { label: "Closed", cls: "bg-status-danger-muted text-status-danger" }
 		: isCooldown
-		? { label: "Cooldown", cls: "bg-amber-500/20 text-amber-400" }
-		: { label: "Active", cls: "bg-green-500/20 text-green-400" };
+		? { label: "Cooldown", cls: "bg-status-warning-muted text-status-warning" }
+		: { label: "Active", cls: "bg-status-success-muted text-status-success" };
 
 	const collKey = normalizeAddress(position.collateral);
 	const bestRatePos = bestInterestByCollateral[collKey];
@@ -280,8 +280,8 @@ export default function PositionBorrow({}) {
 				subtitle="Deposit collateral and borrow new Frankencoins"
 				badges={[
 					{ label: positionStatus.label, className: positionStatus.cls },
-					{ label: `V${position.version}`, className: "bg-blue-500/20 text-blue-400" },
-					...(position.isClone ? [{ label: "Clone", className: "bg-purple-500/20 text-purple-400" }] : []),
+					{ label: `V${position.version}`, className: "bg-status-info-muted text-status-info" },
+					...(position.isClone ? [{ label: "Clone", className: "bg-status-purple-muted text-status-purple" }] : []),
 				]}
 				actions={
 					<div className="flex flex-wrap gap-4 text-sm">
@@ -459,7 +459,7 @@ export default function PositionBorrow({}) {
 
 						{newPrice > priceBigInt && (
 							<AppBox tight={true}>
-								<div className="text-amber-500">
+								<div className="text-status-warning">
 									<div className="flex">
 										<div className="flex-1">
 											<span>Mintable after cooldown</span>
@@ -511,7 +511,7 @@ export default function PositionBorrow({}) {
 					</div>
 
 					{isPositionBlocked && (
-						<div className="flex my-2 px-2 text-amber-500">
+						<div className="flex my-2 px-2 text-status-warning">
 							{position.start * 1000 > now
 								? "This position is pending governance approval."
 								: "This position is in a cooldown period."}
@@ -524,7 +524,7 @@ export default function PositionBorrow({}) {
 						<AppCard>
 							<div className="text-lg font-bold text-center mt-3">Alternative Terms</div>
 							<div className="flex-1 mt-4">
-								<div className="grid grid-cols-3 text-xs text-text-secondary pb-1 border-b border-gray-200 mb-1">
+								<div className="grid grid-cols-3 text-xs text-text-secondary pb-1 border-b border-card-body-seperator mb-1">
 									<div>Term</div>
 									<div className="text-center">Value</div>
 									<div className="text-right">Best</div>
@@ -534,7 +534,7 @@ export default function PositionBorrow({}) {
 									return (
 										<div
 											key={label}
-											className={`grid grid-cols-3 py-2 text-sm border-b border-gray-100 last:border-0 ${
+											className={`grid grid-cols-3 py-2 text-sm border-b border-card-body-seperator last:border-0 ${
 												isBest ? "text-text-secondary" : "cursor-pointer"
 											}`}
 											onClick={() => !isBest && navigate.push(`/mint/${pos.position}`)}
@@ -543,7 +543,7 @@ export default function PositionBorrow({}) {
 											<div className="text-center font-medium text-text-primary">{value}</div>
 											<div className="text-right">
 												{isBest ? (
-													<span className="font-bold text-green-500">✓</span>
+													<span className="font-bold text-status-success">✓</span>
 												) : (
 													<span className="inline-block text-xs px-2 py-0.5 rounded-full bg-button-default hover:bg-button-hover text-white font-medium">
 														Select
