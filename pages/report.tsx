@@ -103,7 +103,7 @@ export default function ReportPage() {
 				// clear all errors
 				setError("");
 			} catch (error) {
-				console.log(error);
+				console.error(error);
 				if (typeof error == "string") {
 					setError(error);
 				} else {

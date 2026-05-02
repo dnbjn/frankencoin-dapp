@@ -12,8 +12,7 @@ if (!CONFIG.wagmiId) throw new Error("Project ID is not defined");
 const modal = createAppKit({
 	adapters: [WAGMI_ADAPTER],
 	projectId: CONFIG.wagmiId,
-	// @ts-ignore
-	networks: WAGMI_CHAINS,
+	networks: WAGMI_CHAINS as any,
 	defaultNetwork: WAGMI_CHAIN,
 	metadata: WAGMI_METADATA,
 	features: {

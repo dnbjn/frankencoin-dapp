@@ -123,6 +123,8 @@ export default function PositionBorrow({}) {
 		fetchAsync();
 	}, [data, account.address, position, chainId]);
 
+	const positionExplorerUrl = useContractUrl(String(addressQuery));
+
 	// don't continue if position not loaded correctly
 	if (!position) return null;
 
@@ -179,7 +181,6 @@ export default function PositionBorrow({}) {
 	const now = Date.now();
 	const isPositionBlocked = position.start * 1000 > now || (position.start * 1000 < now && position.cooldown > now);
 
-	const positionExplorerUrl = useContractUrl(String(addressQuery));
 	const isCooldown = position.start * 1000 < now && position.cooldown > now;
 	const positionStatus = position.closed
 		? { label: "Closed", cls: "bg-status-danger-muted text-status-danger" }

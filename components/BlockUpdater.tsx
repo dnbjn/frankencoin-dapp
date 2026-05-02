@@ -55,7 +55,7 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 		initializing = true;
 		initStart = Date.now();
 
-		console.log(`Init [BlockUpdater]: Start loading application data... ${initStart}`);
+		CONFIG.verbose && console.log(`Init [BlockUpdater]: Start loading application data... ${initStart}`);
 		store.dispatch(fetchEcosystem());
 		store.dispatch(fetchPositionsList());
 		store.dispatch(fetchPricesList());
@@ -72,7 +72,7 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 		if (initialized) return;
 
 		if (loadedEcosystem && loadedPositions && loadedPrices && loadedChallenges && loadedBids && loadedLeadrate && loadedSavings) {
-			console.log(`Init [BlockUpdater]: Done. ${Date.now() - initStart} ms`);
+			CONFIG.verbose && console.log(`Init [BlockUpdater]: Done. ${Date.now() - initStart} ms`);
 			setInitialized(true);
 			return;
 		}
@@ -80,7 +80,7 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 		// Breaker: force initialized after timeout even if not all data loaded
 		const remaining = timeToBreakLoading();
 		const timer = setTimeout(() => {
-			console.warn(`Init [BlockUpdater]: Breaker triggered after ${initBreakerMS} ms. Forcing app to continue.`);
+			CONFIG.verbose && console.warn(`Init [BlockUpdater]: Breaker triggered after ${initBreakerMS} ms. Forcing app to continue.`);
 			setInitialized(true);
 		}, remaining);
 

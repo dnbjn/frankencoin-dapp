@@ -4,6 +4,16 @@ const nextConfig = {
 	reactStrictMode: true,
 	transpilePackages: ["@frankencoin/zchf", "@frankencoin/api"],
 
+	// Ensure the `workerd` export targets of these packages are traced into the
+	// standalone output so OpenNext copies them. Without this, esbuild fails
+	// resolving `isows` / `uncrypto` during the worker bundle step.
+	outputFileTracingIncludes: {
+		"*": [
+			"./node_modules/isows/_esm/native.js",
+			"./node_modules/uncrypto/dist/crypto.web.mjs",
+		],
+	},
+
 	webpack: (config) => {
 		// Stub out optional peer deps not used in this app
 		config.resolve.alias = {

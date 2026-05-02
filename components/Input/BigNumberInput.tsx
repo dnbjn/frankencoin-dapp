@@ -41,9 +41,8 @@ export function BigNumberInput({
 
 			try {
 				parseInputValue = parseUnits(inputValue || "0", decimals);
-			} catch (e) {
-				console.log(e);
-				// do nothing
+			} catch {
+				// do nothing — parse error expected during intermediate typing
 			}
 
 			if (!parseInputValue || !parseInputValue.eq(value)) {
@@ -72,8 +71,7 @@ export function BigNumberInput({
 		let newValue: BigNumber;
 		try {
 			newValue = parseUnits(value, decimals);
-		} catch (e) {
-			console.log(e);
+		} catch {
 			// don't update the input on invalid values
 			return;
 		}

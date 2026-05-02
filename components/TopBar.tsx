@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
 import { CONFIG } from "../app.config";
@@ -53,7 +54,7 @@ export default function TopBar() {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<img src="/coin/zchf.png" alt="ZCHF" className="h-8 w-8 object-contain transition-transform duration-200 group-hover:scale-105" />
+					<Image src="/coin/zchf.png" alt="ZCHF" width={32} height={32} className="object-contain transition-transform duration-200 group-hover:scale-105" />
 					<span className="hidden lg:block font-bold text-menu-textactive text-sm tracking-tight whitespace-nowrap">
 						Frankencoin
 					</span>

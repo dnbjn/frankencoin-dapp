@@ -100,7 +100,7 @@ export default function GovernanceCCIPBridgesRow({ headers, tab, sourceChainId, 
 			if (inState !== null) setInboundFetched(inState as RateLimiterState);
 		};
 		fetcher();
-	}, [sourceChainId, destinationSelector]);
+	}, [sourceChainId, destinationSelector, inboundProp]);
 
 	const detailsHref = `/governance/bridges/${sourceChainId}/${destinationSelector.toString()}`;
 

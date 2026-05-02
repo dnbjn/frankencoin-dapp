@@ -6,7 +6,7 @@ import { shortenAddress } from "@utils";
 import { renderErrorTxToast, TxToast } from "@components/TxToast";
 import { useConnection, useChainId } from "wagmi";
 import AppButton from "@components/AppButton";
-import { Address, isAddress } from "viem";
+import { Address, isAddress, zeroAddress } from "viem";
 import { ADDRESS, BridgedGovernanceABI, EquityABI } from "@frankencoin/zchf";
 import GuardSupportedChain from "@components/Guards/GuardSupportedChain";
 import { track } from "@hooks";
@@ -24,7 +24,7 @@ export default function GovernanceDelegationAction({ delegate, disabled }: Props
 
 	const handleOnClick = async function (e: any) {
 		e.preventDefault();
-		if (!address || !isAddress(delegate)) return;
+		if (!address || !isAddress(delegate) || delegate === zeroAddress) return;
 
 		try {
 			setAction(true);

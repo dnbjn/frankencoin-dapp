@@ -28,10 +28,10 @@ export const useUserAllowance = (spenderChain: SpenderChain[], account?: Address
 		})),
 	});
 
+	const results: any = data;
 	return spenderChain.map(({ spender, chainId }, idx) => ({
 		spender,
 		chainId,
-		// @ts-ignore
-		allowance: data ? decodeBigIntCall(data[idx]) : BigInt(0), // Type instantiation is excessively deep and possibly infinite
+		allowance: decodeBigIntCall(results?.[idx]),
 	}));
 };

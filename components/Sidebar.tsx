@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { CONFIG } from "../app.config";
 import { useConnection } from "wagmi";
@@ -88,7 +89,7 @@ export default function MobileDrawer() {
 				{/* Header */}
 				<div className="flex items-center justify-between px-5 py-4 border-b border-menu-separator">
 					<Link href={CONFIG.landing} className="flex items-center gap-2.5" onClick={close} target="_blank" rel="noopener noreferrer">
-						<img src="/coin/zchf.png" alt="Frankencoin" className="h-8 w-8 object-contain" />
+						<Image src="/coin/zchf.png" alt="Frankencoin" width={32} height={32} className="object-contain" />
 						<span className="font-bold text-menu-textactive text-base tracking-tight">Frankencoin</span>
 					</Link>
 					<button
