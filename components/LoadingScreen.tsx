@@ -86,7 +86,7 @@ export function SubmitIssue() {
 	const isTestnet = process.env.NEXT_PUBLIC_PROFILE == "testnet";
 
 	return (
-		<ul className="flex items-center gap-8 text-white">
+		<ul className="flex flex-wrap items-center justify-center gap-6">
 			<li>
 				<FooterButton link={SOCIAL.Github_dapp_new_issue} text="Submit an Issue" icon={faGithub} />
 			</li>
@@ -109,9 +109,9 @@ interface ButtonProps {
 
 const FooterButton = ({ link, text, icon }: ButtonProps) => {
 	return (
-		<Link href={link} target="_blank" rel="noreferrer" className="flex gap-2 hover:opacity-70">
-			<FontAwesomeIcon icon={icon} className="w-6 h-6" />
-			<div className="font-semibold">{text}</div>
+		<Link href={link} target="_blank" rel="noreferrer" className="group flex items-center gap-2 px-2.5 py-2 rounded-xl text-sm text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150">
+			<FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-150 group-hover:scale-110" />
+			<span className="font-medium">{text}</span>
 		</Link>
 	);
 };

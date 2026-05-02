@@ -100,7 +100,7 @@ export default function TableHeadSearchable({
 	const totalActiveFilters = activeFilters.length + activeCustomCategories.length;
 
 	return (
-		<div className="rounded-t-lg bg-table-header-primary">
+		<div className="table-sticky-head rounded-t-lg bg-table-header-primary">
 			{/* Search / toggle / filter bar */}
 			<div className="grid grid-cols-1 md:flex md:items-center md:justify-between px-7 xl:px-11 py-4 border-b border-card-body-seperator gap-3">
 				{/* Search input */}

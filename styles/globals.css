@@ -54,10 +54,10 @@
 	--color-table-row-secondary: #f9fafb;
 	--color-table-row-hover: #f3f4f6;
 
-	--color-button-default: #111827;
-	--color-button-hover: #1f2937;
-	--color-button-disabled: #e5e7eb;
-	--color-button-textdisabled: #9ca3af;
+	--color-button-default: #6366f1;
+	--color-button-hover: #4f46e5;
+	--color-button-disabled: #e2e8f0;
+	--color-button-textdisabled: #94a3b8;
 
 	--color-link: #2563eb;
 
@@ -129,8 +129,8 @@
 	--color-table-row-secondary: hsl(var(--bg-300) / var(--tw-bg-opacity));
 	--color-table-row-hover: hsl(var(--bg-300) / var(--tw-bg-opacity));
 
-	--color-button-default: #374151;
-	--color-button-hover: #4b5563;
+	--color-button-default: #6366f1;
+	--color-button-hover: #4f46e5;
 	--color-button-disabled: hsl(var(--bg-300) / var(--tw-bg-opacity));
 	--color-button-textdisabled: #6b7280;
 
@@ -149,116 +149,6 @@
 	--color-status-purple-muted: rgba(192, 132, 252, 0.15);
 }
 
-/* Avenir Fonts */
-
-/* Avenir-Book-01.ttf
-Avenir-BookOblique-02.ttf
-Avenir-Black-03.ttf
-Avenir-BlackOblique-04.ttf
-Avenir-Heavy-05.ttf
-Avenir-HeavyOblique-06
-Avenir-Light-07.ttf
-Avenir-LightOblique-08.ttf
-Avenir-Medium-09.ttf
-Avenir-MediumOblique-10.ttf
-Avenir-Oblique-11.ttf
-Avenir-Roman-12.ttf */
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Book-01.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-BookOblique-02.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Black-03.ttf") format("truetype");
-	font-weight: 900;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-BlackOblique-04.ttf") format("truetype");
-	font-weight: 900;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Heavy-05.ttf") format("truetype");
-	font-weight: 800;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-HeavyOblique-06.ttf") format("truetype");
-	font-weight: 800;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Light-07.ttf") format("truetype");
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-LightOblique-08.ttf") format("truetype");
-	font-weight: 300;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Medium-09.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-MediumOblique-10.ttf") format("truetype");
-	font-weight: 500;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Oblique-11.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Roman-12.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
 
 @layer components {
 	.btn {
@@ -288,6 +178,28 @@ Avenir-Roman-12.ttf */
 
 body {
 	@apply antialiased;
+}
+
+@keyframes theme-icon-in {
+	from {
+		opacity: 0;
+		transform: rotate(-90deg) scale(0.5);
+	}
+	to {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+}
+
+.theme-icon {
+	animation: theme-icon-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Sticky table header */
+.table-sticky-head {
+	position: sticky;
+	top: 0;
+	z-index: 10;
 }
 
 .text-link,

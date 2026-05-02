@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { SOCIAL } from "@utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faBook, faBookmark, faComments } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faTelegram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { SubmitIssue } from "./LoadingScreen";
@@ -28,46 +27,45 @@ const DynamicDocs = (): string => {
 };
 
 export default function Footer() {
+	const docsLink = DynamicDocs();
+
+	const communityLinks = [
+		{ link: SOCIAL.Twitter, name: "Twitter", icon: faXTwitter },
+		{ link: SOCIAL.Telegram, name: "Telegram", icon: faTelegram },
+		{ link: SOCIAL.Forum, name: "Forum", icon: faComments },
+		{ link: SOCIAL.SubStack, name: "Substack", icon: faBookmark },
+		{ link: SOCIAL.Github_contract, name: "GitHub", icon: faGithub },
+		{ link: docsLink, name: "Documentation", icon: faBook },
+	];
+
 	return (
-		<div className="md:flex md:grid-rows-2 justify-items-center md:px-12 md:pb-[25px] max-md:pb-[25px] pt-8 bg-layout-footer text-white">
-			<div className="md:flex-1 max-md:flex justify-center">
-				<SubmitIssue />
+		<footer className="w-full px-4 md:px-6 pb-4 pt-2">
+			<div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
+				<div className="bg-menu-back/85 backdrop-blur-xl border border-menu-separator rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] px-4 py-4 md:px-6 md:py-5">
+					<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+						{/* Community links */}
+						<div className="grid grid-cols-3 sm:flex sm:flex-wrap sm:items-center gap-1 sm:gap-1">
+							{communityLinks.map(({ link, name, icon }) => (
+								<Link
+									key={name}
+									href={link}
+									target="_blank"
+									rel="noreferrer"
+									className="group flex items-center gap-2 px-2.5 py-2 rounded-xl text-sm text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150"
+								>
+									<FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-150 group-hover:scale-110" />
+									<span>{name}</span>
+								</Link>
+							))}
+						</div>
+
+						{/* Submit issue / version */}
+						<div className="border-t border-menu-separator pt-3 sm:border-0 sm:pt-0 sm:pl-4 sm:border-l sm:border-menu-separator flex-shrink-0">
+							<SubmitIssue />
+						</div>
+					</div>
+				</div>
 			</div>
-
-			<ul className="flex gap-8 max-md:pt-12 justify-center">
-				<li>
-					<FooterButton link={SOCIAL.Twitter} text="Twitter" icon={faXTwitter} />
-				</li>
-				<li>
-					<FooterButton link={SOCIAL.Telegram} text="Telegram" icon={faTelegram} />
-				</li>
-				<li>
-					<FooterButton link={SOCIAL.Forum} text="Forum" icon={faComments} />
-				</li>
-				<li>
-					<FooterButton link={SOCIAL.SubStack} text="Blog" icon={faBookmark} />
-				</li>
-				<li>
-					<FooterButton link={SOCIAL.Github_contract} text="Github" icon={faGithub} />
-				</li>
-				<li>
-					<FooterButton link={DynamicDocs()} text="Doc" icon={faBook} />
-				</li>
-			</ul>
-		</div>
+		</footer>
 	);
 }
-
-interface ButtonProps {
-	link: string;
-	text: string;
-	icon: IconProp;
-}
-
-const FooterButton = ({ link, text, icon }: ButtonProps) => {
-	return (
-		<Link href={link} target="_blank" rel="noreferrer" className="flex gap-1 hover:opacity-70">
-			<FontAwesomeIcon icon={icon} className="w-6 h-6" />
-		</Link>
-	);
-};

@@ -115,8 +115,8 @@ export const WAGMI_ADAPTER = new WagmiAdapter({
 export const WAGMI_CONFIG = WAGMI_ADAPTER.wagmiConfig;
 
 // Default referrer for savings module — replace with your address and fee
-export const SAVINGS_DEFAULT_REFERRER: Address = "0x0000000000000000000000000000000000000000";
-export const SAVINGS_DEFAULT_REFERRAL_FEE_PPM = 250000n; // 25%
+export const SAVINGS_DEFAULT_REFERRER: Address = "0x796A3893b883C997B083a7a7f71544F8f6ffB679";
+export const SAVINGS_DEFAULT_REFERRAL_FEE_PPM = 100000n; // 25%
 
 // MINT POSITION BLACKLIST
 export const MINT_POSITION_BLACKLIST: Address[] = [
