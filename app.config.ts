@@ -1,6 +1,6 @@
 "use client";
 
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { cookieStorage, createStorage, http, fallback } from "@wagmi/core";
 import { injected, coinbaseWallet, safe } from "@wagmi/connectors";
 import { mainnet, polygon, Chain, arbitrum, optimism, avalanche, gnosis, sonic, base, AppKitNetwork } from "@reown/appkit/networks";
@@ -45,12 +45,12 @@ if (CONFIG.verbose) {
 
 // PONDER CLIENT
 export const PONDER_CLIENT = new ApolloClient({
-	uri: CONFIG.ponder,
+	link: new HttpLink({ uri: CONFIG.ponder }),
 	cache: new InMemoryCache(),
 });
 
 export const MORPHOGRAPH_CLIENT = new ApolloClient({
-	uri: CONFIG.morphoGraph,
+	link: new HttpLink({ uri: CONFIG.morphoGraph }),
 	cache: new InMemoryCache(),
 });
 
