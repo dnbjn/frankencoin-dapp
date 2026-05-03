@@ -3,7 +3,7 @@ import { formatUnits, parseUnits } from "@ethersproject/units";
 import { BigNumber } from "@ethersproject/bignumber";
 
 export type BigNumberInputProps = {
-	inputRefChild?: React.RefObject<HTMLInputElement>;
+	inputRefChild?: React.RefObject<HTMLInputElement | null>;
 	decimals?: number;
 	value: string;
 	onChange?: (value: string) => void;
