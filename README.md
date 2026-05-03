@@ -26,6 +26,7 @@ NEXT_PUBLIC_APP_URL=https://app.frankencoin.com
 NEXT_PUBLIC_API_URL=https://api.frankencoin.com
 NEXT_PUBLIC_PONDER_URL=https://ponder.frankencoin.com
 NEXT_PUBLIC_WAGMI_ID=your_walletconnect_project_id
+NEXT_PUBLIC_UMAMI_URL=
 ```
 
 ## Development

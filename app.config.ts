@@ -30,7 +30,7 @@ export const CONFIG: ConfigEnv = {
 	verbose: false,
 
 	landing: process.env.NEXT_PUBLIC_LANDINGPAGE_URL || "https://frankencoin.com",
-	app: process.env.NEXT_PUBLIC_APP_URL || "https://app.frankencoin.com",
+	app: process.env.NEXT_PUBLIC_APP_URL || "https://dev-frankencoin-dapp.dnbjn.workers.dev",
 	api: process.env.NEXT_PUBLIC_API_URL || "https://api.frankencoin.com",
 	ponder: process.env.NEXT_PUBLIC_PONDER_URL || "https://ponder.frankencoin.com",
 	morphoGraph: process.env.NEXT_PUBLIC_MORPHOGRAPH_URL || "https://blue-api.morpho.org/graphql",
