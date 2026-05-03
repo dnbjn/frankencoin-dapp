@@ -22,6 +22,11 @@ const modal = createAppKit({
 	themeVariables: {
 		"--w3m-color-mix": "#ffffff",
 		"--w3m-color-mix-strength": 40,
+		// Setting a custom font-family makes AppKit skip its preload of
+		// KHTeka woff2 files from fonts.reown.com (see node_modules/
+		// @reown/appkit-ui/.../ThemeUtil.js: `if (!hasCustomFont) { ... }`),
+		// which otherwise triggers the "preloaded but not used" warning.
+		"--w3m-font-family": "Inter, system-ui, sans-serif",
 	},
 });
 
