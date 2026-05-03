@@ -2,17 +2,17 @@
 
 Frontend for the [Frankencoin](https://frankencoin.com) protocol — a decentralized, oracle-free, collateral-backed stablecoin (ZCHF) on Ethereum.
 
-Built with Next.js 14, TailwindCSS, wagmi v2, and viem.
+Built with Next.js 15, React 19, TailwindCSS, wagmi, and viem. Deployed as a Cloudflare Worker via [OpenNext](https://opennext.js.org/cloudflare).
 
 ## Requirements
 
--   Node 20
+-   Node 20+
 -   Yarn 1.22+
 
 ## Setup
 
 ```bash
-git clone https://github.com/Frankencoin-ZCHF/frankencoin-dapp.git
+git clone https://github.com/dnbjn/frankencoin-dapp.git
 cd frankencoin-dapp
 yarn install --frozen-lockfile
 cp .env.example .env.local
@@ -25,9 +25,14 @@ NEXT_PUBLIC_LANDINGPAGE_URL=https://frankencoin.com
 NEXT_PUBLIC_APP_URL=https://app.frankencoin.com
 NEXT_PUBLIC_API_URL=https://api.frankencoin.com
 NEXT_PUBLIC_PONDER_URL=https://ponder.frankencoin.com
+NEXT_PUBLIC_MORPHOGRAPH_URL=https://blue-api.morpho.org/graphql
+NEXT_PUBLIC_PROFILE=mainnet
 NEXT_PUBLIC_WAGMI_ID=your_walletconnect_project_id
 NEXT_PUBLIC_UMAMI_URL=
+NEXT_PUBLIC_UMAMI_WEBSITE_ID=
 ```
+
+All values fall back to sensible defaults in `app.config.ts` if omitted.
 
 ## Development
 
@@ -37,19 +42,20 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Production
+## Production build
 
 ```bash
-yarn build
-yarn start
+yarn build         # Next.js production build
+yarn preview       # Build + run the Cloudflare Worker locally
+yarn deploy        # Build, upload, and activate on Cloudflare
+yarn upload        # Build and upload as a preview-only version
 ```
+
+`yarn deploy` ships to production traffic immediately. `yarn upload` stages a new worker version without flipping the switch — useful for staged rollouts.`.
 
 ## Adding a New Collateral Token
 
 1. Add the token logo (`svg` or `png`) to `public/coin/` — filename must be lowercase and match the token symbol exactly, e.g. `public/coin/wbtc.svg`.
 2. Add end-of-year prices to the API repo's `yearly.service.ts` if applicable.
 
-## Deployment
 
--   `main` → [app.frankencoin.com](https://app.frankencoin.com)
--   `...` → app.test.frankencoin.com
