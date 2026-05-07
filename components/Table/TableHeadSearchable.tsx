@@ -100,9 +100,9 @@ export default function TableHeadSearchable({
 	const totalActiveFilters = activeFilters.length + activeCustomCategories.length;
 
 	return (
-		<div className="rounded-t-lg bg-table-header-primary">
+		<div className="table-sticky-head rounded-t-lg bg-table-header-primary">
 			{/* Search / toggle / filter bar */}
-			<div className="grid grid-cols-1 md:flex md:items-center md:justify-between px-7 xl:px-11 py-4 border-b border-gray-100 dark:border-gray-700 gap-3">
+			<div className="grid grid-cols-1 md:flex md:items-center md:justify-between px-7 xl:px-11 py-4 border-b border-card-body-seperator gap-3">
 				{/* Search input */}
 				<div className="flex flex-1 items-center gap-2 text-text-secondary">
 					<FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4 text-text-secondary" />
@@ -116,7 +116,7 @@ export default function TableHeadSearchable({
 				</div>
 
 				{/* Divider between search and controls — mobile only */}
-				<div className="md:hidden border-t border-gray-100 -mx-7" />
+				<div className="md:hidden border-t border-card-body-seperator -mx-7" />
 
 				{/* Right controls */}
 				<div className="flex items-center justify-end gap-5">
@@ -127,11 +127,11 @@ export default function TableHeadSearchable({
 							aria-checked={inMyWallet}
 							onClick={() => onInMyWalletChange(!inMyWallet)}
 							className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
-								inMyWallet ? "bg-button-default" : "bg-gray-300 dark:bg-gray-600"
+								inMyWallet ? "bg-button-default" : "bg-button-disabled"
 							}`}
 						>
 							<span
-								className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${
+								className={`inline-block h-4 w-4 transform rounded-full bg-card-body-primary shadow transition-transform ${
 									inMyWallet ? "translate-x-6" : "translate-x-1"
 								}`}
 							/>
@@ -145,8 +145,8 @@ export default function TableHeadSearchable({
 							onClick={() => setFilterOpen((prev) => !prev)}
 							className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors ${
 								filterOpen || totalActiveFilters > 0
-									? "border-button-default text-button-default bg-blue-50 dark:bg-blue-900/20"
-									: "dark:border-gray-600 text-text-secondary hover:bg-button-disabled"
+									? "border-button-default text-button-default bg-card-content-primary"
+									: "border-card-body-seperator text-text-secondary hover:bg-button-disabled"
 							}`}
 						>
 							<FontAwesomeIcon icon={faSlidersH} className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ export default function TableHeadSearchable({
 						</button>
 
 						{filterOpen && (
-							<div className="absolute right-0 top-full mt-2 z-50 w-52 rounded-lg bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 py-3">
+							<div className="absolute right-0 top-full mt-2 z-50 w-52 rounded-lg bg-card-body-primary shadow-lg border border-card-body-seperator py-3">
 								{filterOptions.length > 0 && (
 									<>
 										<div className="px-4 pb-2">
@@ -170,7 +170,7 @@ export default function TableHeadSearchable({
 										{filterOptions.map((opt) => (
 											<label
 												key={opt.value}
-												className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+												className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-card-content-primary"
 											>
 												<input
 													type="checkbox"
@@ -185,7 +185,7 @@ export default function TableHeadSearchable({
 								)}
 								{customCategories && customCategories.length > 0 && (
 									<>
-										{filterOptions.length > 0 && <div className="my-2 border-t border-gray-100 dark:border-gray-700" />}
+										{filterOptions.length > 0 && <div className="my-2 border-t border-card-body-seperator" />}
 										<div className="px-4 pb-2">
 											<span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
 												{customCategoriesTitle}
@@ -194,7 +194,7 @@ export default function TableHeadSearchable({
 										{customCategories.map((category) => (
 											<label
 												key={category}
-												className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+												className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-card-content-primary"
 											>
 												<input
 													type="checkbox"
@@ -214,7 +214,7 @@ export default function TableHeadSearchable({
 			</div>
 
 			{/* Column headers — desktop */}
-			<div className="items-center justify-between py-4 px-8 md:flex xl:px-12">
+			<div className="items-center justify-between py-4 px-8 md:flex xl:px-12 border-b border-card-body-seperator">
 				<div className={`max-md:hidden pl-8 flex-grow grid-cols-2 md:grid md:grid-cols-${colSpan || headers.length}`}>
 					{headers.map((header, i) => (
 						<div className={`${i > 0 ? "text-right" : ""}`} key={`th-${i}`} onClick={() => handleTabClick(header)}>
@@ -228,8 +228,7 @@ export default function TableHeadSearchable({
 							{tab === header ? (
 								<FontAwesomeIcon
 									icon={reverse ? faArrowUpShortWide : faArrowDownWideShort}
-									className="ml-2 cursor-pointer"
-									color="#092f62"
+									className="ml-2 cursor-pointer text-text-active"
 								/>
 							) : null}
 						</div>

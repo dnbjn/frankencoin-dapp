@@ -176,7 +176,7 @@ export default function CollateralOverviewTable() {
 					filtered.map((stat) => {
 						const balanceFormatted = formatCurrency(Number(formatUnits(stat.balance, stat.collateral.decimals)), 2, 2);
 						const avgCollPct = stat.avgCollateral * 100;
-						const collColor = avgCollPct < 110 ? "text-red-500" : avgCollPct <= 120 ? "text-orange-400" : "text-green-500";
+						const collColor = avgCollPct < 110 ? "text-status-danger" : avgCollPct <= 120 ? "text-status-orange" : "text-status-success";
 						const isBridge = normalizeAddress(stat.original.position) === bridgePosition;
 
 						return (

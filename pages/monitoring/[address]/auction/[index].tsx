@@ -67,11 +67,11 @@ export default function ChallengePlaceBid() {
 				<AppTitle
 					title="Auction"
 					subtitle="Buy collateral in the challenge auction"
-					badges={[{ label: "Auction", className: "bg-blue-500/20 text-blue-400" }]}
+					badges={[{ label: "Auction", className: "bg-status-info-muted text-status-info" }]}
 				/>
 
 				<div className="mt-8">
-					<div className="rounded-lg border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950/30 px-4 py-3 text-sm text-blue-600 dark:text-blue-400">
+					<div className="rounded-lg border border-card-input-border bg-card-content-primary px-4 py-3 text-sm text-text-active">
 						This auction could not be found. It may have already ended or the data is still loading.
 					</div>
 				</div>

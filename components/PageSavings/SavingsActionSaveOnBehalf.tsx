@@ -6,7 +6,7 @@ import { formatCurrency, getChain, shortenAddress } from "@utils";
 import { renderErrorTxToast, TxToast } from "@components/TxToast";
 import { useConnection, useChainId } from "wagmi";
 import AppButton from "@components/AppButton";
-import { Address, formatUnits } from "viem";
+import { Address, formatUnits, isAddress } from "viem";
 import { track } from "@hooks";
 import { ChainId, SavingsABI } from "@frankencoin/zchf";
 import GuardSupportedChain from "@components/Guards/GuardSupportedChain";
@@ -28,7 +28,7 @@ export default function SavingsActionSaveOnBehalf({ savingsModule, amount, onBeh
 
 	const handleOnClick = async function (e: any) {
 		e.preventDefault();
-		if (!account.address) return;
+		if (!account.address || !isAddress(onBehalf)) return;
 
 		try {
 			setAction(true);

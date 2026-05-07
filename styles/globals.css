@@ -2,116 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Avenir Fonts */
+/* Light mode */
+:root {
+	--bg-100: 0 0% 100%;       /* HSL channels — white (page) */
+	--bg-200: 0 0% 96%;        /* HSL channels — off-white */
+	--bg-300: 0 0% 95%;        /* HSL channels — light gray */
+	--bg-nav: 0 0% 97%;        /* HSL channels — navbar: barely-off-white */
+	--bg-footer: 0 0% 13%;     /* HSL channels — footer: dark charcoal */
 
-/* Avenir-Book-01.ttf
-Avenir-BookOblique-02.ttf
-Avenir-Black-03.ttf
-Avenir-BlackOblique-04.ttf
-Avenir-Heavy-05.ttf
-Avenir-HeavyOblique-06
-Avenir-Light-07.ttf
-Avenir-LightOblique-08.ttf
-Avenir-Medium-09.ttf
-Avenir-MediumOblique-10.ttf
-Avenir-Oblique-11.ttf
-Avenir-Roman-12.ttf */
+	--color-layout-primary: hsl(var(--bg-100));
+	--color-layout-secondary: hsl(var(--bg-200));
+	--color-layout-footer: hsl(var(--bg-footer));
 
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Book-01.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+	--color-menu-text: #111111;
+	--color-menu-textactive: #111111;
+	--color-menu-active: #ebebeb;
+	--color-menu-hover: #e2e2e2;
+	--color-menu-back: hsl(var(--bg-nav));
+	--color-menu-separator: #e0e0e0;
+
+	--color-card-input-label: #6b7280;
+	--color-card-input-disabled: #f3f4f6;
+	--color-card-input-empty: #9ca3af;
+	--color-card-input-focus: var(--color-link);
+	--color-card-input-error: #ef4444;
+	--color-card-input-border: #cbd5e1;
+	--color-card-input-hover: var(--color-link);
+	--color-card-input-min: #111827;
+	--color-card-input-max: #111827;
+	--color-card-input-reset: #111827;
+
+	--color-card-body-primary: #ffffff;
+	--color-card-body-secondary: #1e3a8a;
+	--color-card-body-seperator: #cbd5e1;
+
+	--color-card-content-primary: #f5f5f5;
+	--color-card-content-secondary: #ffffff;
+	--color-card-content-highlight: #ef4444;
+
+	--color-text-header: #374151;
+	--color-text-subheader: #6b7280;
+	--color-text-active: #111827;
+	--color-text-primary: #111111;
+	--color-text-secondary: #6b7280;
+	--color-text-warning: #ef4444;
+	--color-text-success: #22c55e;
+
+	--color-table-header-primary: #ffffff;
+	--color-table-header-secondary: #f5f5f5;
+	--color-table-row-primary: #ffffff;
+	--color-table-row-secondary: #f9fafb;
+	--color-table-row-hover: #f3f4f6;
+
+	--color-button-default: #6366f1;
+	--color-button-hover: #4f46e5;
+	--color-button-disabled: #e2e8f0;
+	--color-button-textdisabled: #94a3b8;
+
+	--color-link: #2563eb;
+
+	--color-status-danger: #dc2626;
+	--color-status-danger-muted: rgba(220, 38, 38, 0.1);
+	--color-status-warning: #ca8a04;
+	--color-status-warning-muted: rgba(202, 138, 4, 0.1);
+	--color-status-success: #16a34a;
+	--color-status-success-muted: rgba(22, 163, 74, 0.1);
+	--color-status-info: #2563eb;
+	--color-status-info-muted: rgba(37, 99, 235, 0.1);
+	--color-status-orange: #ea580c;
+	--color-status-purple: #9333ea;
+	--color-status-purple-muted: rgba(147, 51, 234, 0.1);
 }
 
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-BookOblique-02.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
+/* Dark mode */
+.dark {
+	--_gray-800: 60 2% 12%;
+	--tw-bg-opacity: 1;
+
+	--bg-100: var(--_gray-800);  /* HSL channels — warm dark gray (page) */
+	--bg-200: 60 2% 16%;         /* HSL channels — cards */
+	--bg-300: 60 2% 20%;         /* HSL channels — nested content */
+	--bg-nav: 60 2% 15%;         /* HSL channels — navbar */
+	--bg-footer: 60 2% 15%;      /* HSL channels — footer */
+
+	--color-layout-primary: hsl(var(--bg-100) / var(--tw-bg-opacity));
+	--color-layout-secondary: hsl(var(--bg-200) / var(--tw-bg-opacity));
+	--color-layout-footer: hsl(var(--bg-footer) / var(--tw-bg-opacity));
+
+	--color-menu-text: #f9fafb;
+	--color-menu-textactive: #ffffff;
+	--color-menu-active: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-menu-hover: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-menu-back: hsl(var(--bg-nav) / var(--tw-bg-opacity));
+	--color-menu-separator: #222222;
+
+	--color-card-input-label: #9ca3af;
+	--color-card-input-disabled: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-card-input-empty: #6b7280;
+	--color-card-input-focus: var(--color-link);
+	--color-card-input-error: #f87171;
+	--color-card-input-border: #2d2d2d;
+	--color-card-input-hover: var(--color-link);
+	--color-card-input-min: #60a5fa;
+	--color-card-input-max: #60a5fa;
+	--color-card-input-reset: #60a5fa;
+
+	--color-card-body-primary: hsl(var(--bg-200) / var(--tw-bg-opacity));
+	--color-card-body-secondary: #1e3a8a;
+	--color-card-body-seperator: #2d2d2d;
+
+	--color-card-content-primary: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-card-content-secondary: hsl(var(--bg-200) / var(--tw-bg-opacity));
+	--color-card-content-highlight: #f87171;
+
+	--color-text-header: #d1d5db;
+	--color-text-subheader: #9ca3af;
+	--color-text-active: #60a5fa;
+	--color-text-primary: #f9fafb;
+	--color-text-secondary: #9ca3af;
+	--color-text-warning: #f87171;
+	--color-text-success: #4ade80;
+
+	--color-table-header-primary: hsl(var(--bg-200) / var(--tw-bg-opacity));
+	--color-table-header-secondary: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-table-row-primary: hsl(var(--bg-200) / var(--tw-bg-opacity));
+	--color-table-row-secondary: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-table-row-hover: hsl(var(--bg-300) / var(--tw-bg-opacity));
+
+	--color-button-default: #6366f1;
+	--color-button-hover: #4f46e5;
+	--color-button-disabled: hsl(var(--bg-300) / var(--tw-bg-opacity));
+	--color-button-textdisabled: #6b7280;
+
+	--color-link: #60a5fa;
+
+	--color-status-danger: #f87171;
+	--color-status-danger-muted: rgba(248, 113, 113, 0.15);
+	--color-status-warning: #fbbf24;
+	--color-status-warning-muted: rgba(251, 191, 36, 0.15);
+	--color-status-success: #4ade80;
+	--color-status-success-muted: rgba(74, 222, 128, 0.15);
+	--color-status-info: #60a5fa;
+	--color-status-info-muted: rgba(96, 165, 250, 0.15);
+	--color-status-orange: #fb923c;
+	--color-status-purple: #c084fc;
+	--color-status-purple-muted: rgba(192, 132, 252, 0.15);
 }
 
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Black-03.ttf") format("truetype");
-	font-weight: 900;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-BlackOblique-04.ttf") format("truetype");
-	font-weight: 900;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Heavy-05.ttf") format("truetype");
-	font-weight: 800;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-HeavyOblique-06.ttf") format("truetype");
-	font-weight: 800;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Light-07.ttf") format("truetype");
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-LightOblique-08.ttf") format("truetype");
-	font-weight: 300;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Medium-09.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-MediumOblique-10.ttf") format("truetype");
-	font-weight: 500;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Oblique-11.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir";
-	src: url("/fonts/Avenir-Roman-12.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
 
 @layer components {
 	.btn {
@@ -143,8 +180,31 @@ body {
 	@apply antialiased;
 }
 
+@keyframes theme-icon-in {
+	from {
+		opacity: 0;
+		transform: rotate(-90deg) scale(0.5);
+	}
+	to {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+}
+
+.theme-icon {
+	animation: theme-icon-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Sticky table header */
+.table-sticky-head {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
 .text-link,
 p > a {
+	color: var(--color-link);
 	text-decoration: underline;
 
 	@apply transition-opacity duration-200 ease-out;

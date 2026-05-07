@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 
 import Layout from "@components/Layout";
 import NextSeoProvider from "@components/NextSeoProvider";
+import ErrorBoundary from "@components/ErrorBoundary";
 import { ApolloProvider } from "@apollo/client";
 import { Provider as ReduxProvider } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -17,6 +18,7 @@ import USGovSanctionList from "@components/USGovSanctionList";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
+		<ErrorBoundary>
 		<ReduxProvider store={store}>
 			<Web3ModalProvider>
 				<ApolloProvider client={MORPHOGRAPH_CLIENT}>
@@ -41,5 +43,6 @@ export default function App({ Component, pageProps }: AppProps) {
 				</ApolloProvider>
 			</Web3ModalProvider>
 		</ReduxProvider>
+		</ErrorBoundary>
 	);
 }

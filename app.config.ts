@@ -1,7 +1,7 @@
 "use client";
 
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { cookieStorage, createStorage, http } from "@wagmi/core";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { cookieStorage, createStorage, http, fallback } from "@wagmi/core";
 import { injected, coinbaseWallet, safe } from "@wagmi/connectors";
 import { mainnet, polygon, Chain, arbitrum, optimism, avalanche, gnosis, sonic, base, AppKitNetwork } from "@reown/appkit/networks";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
@@ -30,25 +30,27 @@ export const CONFIG: ConfigEnv = {
 	verbose: false,
 
 	landing: process.env.NEXT_PUBLIC_LANDINGPAGE_URL || "https://frankencoin.com",
-	app: process.env.NEXT_PUBLIC_APP_URL || "https://app.frankencoin.com",
-	api: process.env.NEXT_PUBLIC_API_URL || "https://api.frankencoin.com",
-	ponder: process.env.NEXT_PUBLIC_PONDER_URL || "https://ponder.frankencoin.com",
+	app: process.env.NEXT_PUBLIC_APP_URL || "https://zchf.app",
+	api: process.env.NEXT_PUBLIC_API_URL || "https://api.zchf.app",
+	ponder: process.env.NEXT_PUBLIC_PONDER_URL || "https://ponder.zchf.app",
 	morphoGraph: process.env.NEXT_PUBLIC_MORPHOGRAPH_URL || "https://blue-api.morpho.org/graphql",
 	wagmiId: process.env.NEXT_PUBLIC_WAGMI_ID || "3321ad5a4f22083fe6fe82208a4c9ddc",
 	rpc: process.env.NEXT_PUBLIC_RPC_KEY || "dhaKbi2HDlKYW1JaSHm1i_hGkE2gnA5t",
 };
 
-console.log("YOU ARE USING THIS CONFIG PROFILE:");
-console.log(CONFIG);
+if (CONFIG.verbose) {
+	console.log("YOU ARE USING THIS CONFIG PROFILE:");
+	console.log(CONFIG);
+}
 
 // PONDER CLIENT
 export const PONDER_CLIENT = new ApolloClient({
-	uri: CONFIG.ponder,
+	link: new HttpLink({ uri: CONFIG.ponder }),
 	cache: new InMemoryCache(),
 });
 
 export const MORPHOGRAPH_CLIENT = new ApolloClient({
-	uri: CONFIG.morphoGraph,
+	link: new HttpLink({ uri: CONFIG.morphoGraph }),
 	cache: new InMemoryCache(),
 });
 
@@ -69,11 +71,23 @@ export const WAGMI_METADATA = {
 export const WAGMI_ADAPTER = new WagmiAdapter({
 	networks: WAGMI_CHAINS,
 	transports: {
-		[mainnet.id]: http(`https://eth-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
-		[polygon.id]: http(`https://polygon-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+		[mainnet.id]: fallback([
+			http(`https://eth-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http("https://nrs.pub/1"),
+		]),
+		[polygon.id]: fallback([
+			http(`https://polygon-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http("https://nrs.pub/137"),
+		]),
 		[optimism.id]: http(`https://opt-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
-		[arbitrum.id]: http(`https://arb-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
-		[base.id]: http(`https://base-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+		[arbitrum.id]: fallback([
+			http(`https://arb-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http("https://nrs.pub/42161"),
+		]),
+		[base.id]: fallback([
+			http(`https://base-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
+			http(`https://nrs.pub/8453`),
+		]),
 		[avalanche.id]: http(`https://avax-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
 		[gnosis.id]: http(`https://gnosis-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
 		[sonic.id]: http(`https://sonic-mainnet.g.alchemy.com/v2/${CONFIG.rpc}`),
@@ -101,6 +115,10 @@ export const WAGMI_ADAPTER = new WagmiAdapter({
 });
 
 export const WAGMI_CONFIG = WAGMI_ADAPTER.wagmiConfig;
+
+// Default referrer for savings module — replace with your address and fee
+export const SAVINGS_DEFAULT_REFERRER: Address = "0x796A3893b883C997B083a7a7f71544F8f6ffB679";
+export const SAVINGS_DEFAULT_REFERRAL_FEE_PPM = 100000n; // 10%
 
 // MINT POSITION BLACKLIST
 export const MINT_POSITION_BLACKLIST: Address[] = [

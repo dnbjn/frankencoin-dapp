@@ -13,6 +13,9 @@ import { mainnet } from "viem/chains";
 import { TabInput } from "@components/Input/TabInput";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+const cssVar = (name: string) =>
+	getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
 const Timeframes = ["All", "1Y", "1Q", "1M", "1W"];
 const TypeCharts = ["FPS Price", "FPS Supply", "ZCHF Supply"];
 
@@ -66,7 +69,7 @@ export default function EquityFPSDetailsCard() {
 						options={{
 							theme: {
 								monochrome: {
-									color: "#092f62",
+									color: cssVar("--color-button-default"),
 									enabled: true,
 								},
 							},
@@ -136,8 +139,8 @@ export default function EquityFPSDetailsCard() {
 								gradient: {
 									shadeIntensity: 0,
 									opacityTo: 0.2,
-									shade: "#e7e7ea",
-									gradientToColors: ["#092f62"],
+									shade: cssVar("--color-card-content-primary"),
+									gradientToColors: [cssVar("--color-button-default")],
 								},
 							},
 						}}

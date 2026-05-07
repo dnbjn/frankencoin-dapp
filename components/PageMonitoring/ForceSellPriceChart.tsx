@@ -5,6 +5,9 @@ import { formatCurrency, formatDateTime } from "@utils";
 
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+const cssVar = (name: string) =>
+	getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
 interface Props {
 	position: PositionQuery;
 	auctionPrice: bigint;
@@ -53,14 +56,14 @@ export default function ForceSellPriceChart({ position, auctionPrice, marketPric
 			? [
 					{
 						y: marketPriceNum,
-						borderColor: "#16A34A",
+						borderColor: cssVar("--color-status-success"),
 						borderWidth: 1.5,
 						strokeDashArray: 5,
 						label: {
 							text: `Market ${formatCurrency(marketPriceNum, 0, 0)}`,
 							position: "left",
 							offsetX: 65,
-							style: { color: "#16A34A", background: "transparent", fontSize: "10px", padding: { top: 2, bottom: 2, left: 4, right: 4 } },
+							style: { color: cssVar("--color-status-success"), background: "transparent", fontSize: "10px", padding: { top: 2, bottom: 2, left: 4, right: 4 } },
 						},
 					},
 			  ]
@@ -73,12 +76,12 @@ export default function ForceSellPriceChart({ position, auctionPrice, marketPric
 		pointAnnotations.push({
 			x: nowMs,
 			y: currentPriceNum,
-			marker: { size: 8, fillColor: "#F59E0B", strokeColor: "#fff", strokeWidth: 2 },
+			marker: { size: 8, fillColor: cssVar("--color-status-warning"), strokeColor: "#fff", strokeWidth: 2 },
 			label: {
 				text: `${formatCurrency(currentPriceNum, 0, 0)} ZCHF`,
-				borderColor: "#F59E0B",
+				borderColor: cssVar("--color-status-warning"),
 				offsetY: -6,
-				style: { color: "#fff", background: "#F59E0B", fontSize: "11px", padding: { top: 3, bottom: 3, left: 6, right: 6 } },
+				style: { color: "#fff", background: cssVar("--color-status-warning"), fontSize: "11px", padding: { top: 3, bottom: 3, left: 6, right: 6 } },
 			},
 		});
 	}
@@ -87,12 +90,12 @@ export default function ForceSellPriceChart({ position, auctionPrice, marketPric
 		pointAnnotations.push({
 			x: marketPriceHitMs,
 			y: marketPriceNum,
-			marker: { size: 8, fillColor: "#16A34A", strokeColor: "#fff", strokeWidth: 2 },
+			marker: { size: 8, fillColor: cssVar("--color-status-success"), strokeColor: "#fff", strokeWidth: 2 },
 			label: {
 				text: `Hit ${formatDateTime(marketPriceHitMs / 1000) || ""}`,
-				borderColor: "#16A34A",
+				borderColor: cssVar("--color-status-success"),
 				offsetY: -6,
-				style: { color: "#fff", background: "#16A34A", fontSize: "11px", padding: { top: 3, bottom: 3, left: 6, right: 6 } },
+				style: { color: "#fff", background: cssVar("--color-status-success"), fontSize: "11px", padding: { top: 3, bottom: 3, left: 6, right: 6 } },
 			},
 		});
 	}
@@ -136,7 +139,7 @@ export default function ForceSellPriceChart({ position, auctionPrice, marketPric
 						},
 					},
 					grid: {
-						borderColor: "#E5E7EB",
+						borderColor: cssVar("--color-card-body-seperator"),
 						xaxis: { lines: { show: true } },
 						yaxis: { lines: { show: true } },
 						padding: { left: 8, right: 16 },
@@ -145,7 +148,7 @@ export default function ForceSellPriceChart({ position, auctionPrice, marketPric
 						type: "datetime",
 						labels: {
 							formatter: formatXLabel,
-							style: { colors: "#6B7280", fontSize: "11px" },
+							style: { colors: cssVar("--color-text-secondary"), fontSize: "11px" },
 							rotate: -20,
 							rotateAlways: false,
 						},
@@ -156,18 +159,18 @@ export default function ForceSellPriceChart({ position, auctionPrice, marketPric
 						min: 0,
 						title: {
 							text: "Bid Price (ZCHF)",
-							style: { color: "#6B7280", fontSize: "12px", fontWeight: 400 },
+							style: { color: cssVar("--color-text-secondary"), fontSize: "12px", fontWeight: 400 },
 						},
 						labels: {
 							formatter: formatYLabel,
-							style: { colors: "#6B7280", fontSize: "11px" },
+							style: { colors: cssVar("--color-text-secondary"), fontSize: "11px" },
 						},
 					},
 					legend: {
 						show: true,
 						position: "top",
 						horizontalAlign: "center",
-						labels: { colors: "#374151" },
+						labels: { colors: cssVar("--color-text-header") },
 						fontSize: "12px",
 						markers: { size: 6 },
 						itemMargin: { horizontal: 12 },

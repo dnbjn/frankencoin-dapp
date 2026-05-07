@@ -1,4 +1,4 @@
-import { formatUnits } from "viem";
+﻿import { formatUnits } from "viem";
 import { BigNumberInput } from "./BigNumberInput";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
@@ -78,7 +78,7 @@ export default function TokenInput({
 					disabled ? "bg-card-input-disabled" : "hover:border-card-input-hover"
 				} focus-within:!border-card-input-focus ${
 					error ? "!border-card-input-error" : ""
-				} text-text-secondary border-2 rounded-lg px-3 py-1`}
+				} text-text-secondary border-2 rounded-xl px-3 py-1 transition-shadow focus-within:ring-2 focus-within:ring-link/20`}
 				onClick={handleClick}
 			>
 				{label && <div className="flex text-card-input-label my-1">{label}</div>}
@@ -128,43 +128,31 @@ export default function TokenInput({
 						</div>
 
 						{canShowButtons && min != undefined && min != BigInt(value) && min != max && (
-							<div
-								className="text-card-input-min cursor-pointer hover:text-card-input-focus font-extrabold"
-								onClick={() => {
-									if (min !== undefined) {
-										onChange(min.toString());
-										onMin();
-									}
-								}}
+							<button
+								type="button"
+								className="text-xs px-2 py-0.5 rounded-full border border-card-body-seperator bg-card-content-primary text-card-input-min hover:border-link hover:text-link transition-colors cursor-pointer font-medium"
+								onClick={() => { if (min !== undefined) { onChange(min.toString()); onMin(); } }}
 							>
 								Min
-							</div>
+							</button>
 						)}
 						{canShowButtons && reset != undefined && reset != BigInt(value) && reset != min && reset != max && (
-							<div
-								className="text-card-input-reset cursor-pointer hover:text-card-input-focus font-extrabold"
-								onClick={() => {
-									if (reset !== undefined) {
-										onChange(reset.toString());
-										onReset();
-									}
-								}}
+							<button
+								type="button"
+								className="text-xs px-2 py-0.5 rounded-full border border-card-body-seperator bg-card-content-primary text-card-input-reset hover:border-link hover:text-link transition-colors cursor-pointer font-medium"
+								onClick={() => { if (reset !== undefined) { onChange(reset.toString()); onReset(); } }}
 							>
 								Reset
-							</div>
+							</button>
 						)}
 						{canShowButtons && max != undefined && max != BigInt(value) && (
-							<div
-								className="text-card-input-max cursor-pointer hover:text-card-input-focus font-extrabold"
-								onClick={() => {
-									if (max !== undefined) {
-										onChange(max.toString());
-										onMax();
-									}
-								}}
+							<button
+								type="button"
+								className="text-xs px-2 py-0.5 rounded-full border border-card-body-seperator bg-card-content-primary text-card-input-max hover:border-link hover:text-link transition-colors cursor-pointer font-medium"
+								onClick={() => { if (max !== undefined) { onChange(max.toString()); onMax(); } }}
 							>
 								Max
-							</div>
+							</button>
 						)}
 					</div>
 				) : null}
@@ -173,10 +161,12 @@ export default function TokenInput({
 			{error ? (
 				<div className="flex my-2 px-3.5 text-text-warning">{error}</div>
 			) : warning ? (
-				<div className="flex my-2 px-3.5 text-amber-500">{warning}</div>
+				<div className="flex my-2 px-3.5 text-status-warning">{warning}</div>
 			) : (
 				<div className="flex my-2 px-3.5">{note}</div>
 			)}
 		</div>
 	);
 }
+
+

@@ -170,7 +170,7 @@ export default function GovernanceCCIPBridgesTable() {
 						</div>
 
 						{/* Divider between search and controls — mobile only */}
-						<div className="md:hidden border-t border-gray-100 -mx-7" />
+						<div className="md:hidden border-t border-card-body-seperator -mx-7" />
 
 						<div className="flex items-center justify-between md:justify-start gap-2">
 							<span className="text-sm font-semibold text-text-secondary">To</span>

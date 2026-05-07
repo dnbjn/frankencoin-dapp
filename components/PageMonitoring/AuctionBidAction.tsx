@@ -110,7 +110,7 @@ export default function AuctionBidAction({ position, challenge, auctionPrice, on
 				chainId,
 				abi: position.version === 1 ? MintingHubV1ABI : MintingHubV2ABI,
 				functionName: "bid",
-				args: [parseInt(challenge.number.toString()), amount, false],
+				args: [Number(challenge.number), amount, false],
 			});
 
 			const toastContent = [

@@ -83,7 +83,7 @@ export default function LiquidationSlider({
 					{/* Source marker label above track */}
 					<div
 						className={`absolute -top-1 text-xs font-bold -translate-x-1/2 ${
-							sourcePct < 38 ? "text-green-500" : "text-orange-400"
+							sourcePct < 38 ? "text-status-success" : "text-status-orange"
 						}`}
 						style={{ left: `${sourcePct}%` }}
 					>
@@ -100,14 +100,14 @@ export default function LiquidationSlider({
 								style={{ background: `linear-gradient(to right, #22c55e 0%, #eab308 50%, #f97316 100%)` }}
 							/>
 							{/* Grey cover from source marker to end */}
-							<div className="absolute top-0 bottom-0 bg-gray-300" style={{ left: `${sourcePct}%`, right: 0 }} />
+							<div className="absolute top-0 bottom-0 bg-card-body-seperator" style={{ left: `${sourcePct}%`, right: 0 }} />
 							{/* Source line marker */}
-							<div className="absolute top-0 bottom-0 w-0.5 bg-white/70" style={{ left: `${sourcePct}%` }} />
+							<div className="absolute top-0 bottom-0 w-0.5 bg-layout-primary opacity-70" style={{ left: `${sourcePct}%` }} />
 						</div>
 
 						{/* Thumb */}
 						<div
-							className="absolute w-5 h-5 rounded-full bg-white border-2 border-gray-300 shadow-md pointer-events-none -translate-x-1/2"
+							className="absolute w-5 h-5 rounded-full bg-card-body-primary border-2 border-card-body-seperator shadow-md pointer-events-none -translate-x-1/2"
 							style={{ left: `${valuePct}%` }}
 						/>
 
@@ -185,7 +185,7 @@ export default function LiquidationSlider({
 			{error ? (
 				<div className="flex my-2 px-3.5 text-text-warning">{error}</div>
 			) : warning ? (
-				<div className="flex my-2 px-3.5 text-amber-500">{warning}</div>
+				<div className="flex my-2 px-3.5 text-status-warning">{warning}</div>
 			) : (
 				<div className="flex my-2 px-3.5">{note}</div>
 			)}

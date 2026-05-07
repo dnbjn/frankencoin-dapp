@@ -57,7 +57,7 @@ export default function MonitoringAllChallengesRow({ challenge, bids }: Props) {
 					<span className="text-sm text-text-secondary">Status:</span>
 					<span
 						className={`text-sm font-semibold px-2 py-0.5 rounded bg-menu-active ${
-							isActive ? "text-green-500" : "text-yellow-500"
+							isActive ? "text-status-success" : "text-status-warning"
 						}`}
 					>
 						{isActive ? "Active" : "Ended"}
@@ -131,7 +131,7 @@ function BidRow({ bid, position }: { bid: BidsQueryItem; position: any }) {
 				<div>
 					<span
 						className={`text-xs font-semibold px-2 py-0.5 rounded bg-menu-active ${
-							bid.bidType === "Averted" ? "text-yellow-500" : "text-green-500"
+							bid.bidType === "Averted" ? "text-status-warning" : "text-status-success"
 						}`}
 					>
 						{bid.bidType}
@@ -154,7 +154,7 @@ function BidRow({ bid, position }: { bid: BidsQueryItem; position: any }) {
 					<span className="text-text-subheader">Type</span>
 					<span
 						className={`text-xs font-semibold px-2 py-0.5 rounded bg-menu-active ${
-							bid.bidType === "Averted" ? "text-yellow-500" : "text-green-500"
+							bid.bidType === "Averted" ? "text-status-warning" : "text-status-success"
 						}`}
 					>
 						{bid.bidType}

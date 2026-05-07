@@ -165,7 +165,7 @@ export default function MintOutstanding() {
 
 					{mintFiltered.length > INITIAL_VISIBLE && (
 						<div className="text-center mt-4">
-							<button className="text-sm text-blue-500 hover:text-blue-400 duration-200" onClick={() => setShowAll(!showAll)}>
+							<button className="text-sm text-status-info hover:opacity-80 duration-200" onClick={() => setShowAll(!showAll)}>
 								{showAll ? "Show less" : `Show all ${mintFiltered.length} maturities`}
 							</button>
 						</div>

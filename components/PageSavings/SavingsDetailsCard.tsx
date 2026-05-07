@@ -89,7 +89,7 @@ export default function SavingsDetailsCard({
 					</div>
 				) : null}
 
-				<hr className="border-slate-700 border-dashed" />
+				<hr className="border-card-body-seperator border-dashed" />
 
 				<div className="flex font-bold">
 					<div className="flex-1 text-text-secondary">Resulting balance</div>

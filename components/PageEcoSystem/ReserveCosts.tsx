@@ -42,8 +42,6 @@ export default function ReserveCosts() {
 		})
 		.sort((a, b) => (b.value > a.value ? 1 : -1));
 
-	console.log(mapping);
-
 	const labels = mapping.map((m) => m.label);
 	const rawValues = mapping.map((m) => m.value);
 

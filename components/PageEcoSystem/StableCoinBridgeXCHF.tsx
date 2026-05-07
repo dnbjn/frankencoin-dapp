@@ -13,7 +13,7 @@ export default function StableCoinBridgeXCHF() {
 	const expiration = Math.round(((expirationTimestamp - Date.now()) / 1000 / 60 / 60 / 24) * 100) / 100;
 	const statusText =
 		expiration < 30 ? `${expiration} days left` : expiration < 60 ? `${expiration} days left` : `${expiration} days left`;
-	const statusColor = expiration < 30 ? "bg-red-300" : expiration < 60 ? "bg-blue-300" : "bg-green-300";
+	const statusColor = expiration < 30 ? "bg-status-danger" : expiration < 60 ? "bg-status-info" : "bg-status-success";
 
 	return (
 		<div className="bg-card-body-primary rounded-2xl p-8">
@@ -75,7 +75,7 @@ export default function StableCoinBridgeXCHF() {
 				</div>
 			</div>
 
-			<div className={`bg-gray-200 rounded-full text-center max-h-7 max-w-[100] text-gray-900 font-bold ${statusColor}`}>
+			<div className={`bg-card-content-primary rounded-full text-center max-h-7 max-w-[100] text-text-primary font-bold ${statusColor}`}>
 				{statusText}
 			</div>
 		</div>

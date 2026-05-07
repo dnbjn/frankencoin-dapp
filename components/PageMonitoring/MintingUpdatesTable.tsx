@@ -112,16 +112,16 @@ function MintingUpdateRow({ update, position, priceDigit, mintDelta, collDelta, 
 			</div>
 
 			{/* Liq price — highlighted if changed this tx */}
-			<div className={`text-right ${priceProposed ? "text-amber-400 font-medium" : ""}`}>
+			<div className={`text-right ${priceProposed ? "text-status-warning font-medium" : ""}`}>
 				{formatCurrency(formatUnits(BigInt(update.price), priceDigit))} ZCHF
 			</div>
 
 			{/* Δ Minted */}
 			<div className="text-right">
 				{mintDelta > 0n ? (
-					<span className="text-green-500">+{formatCurrency(formatUnits(mintDelta, 18))} ZCHF</span>
+					<span className="text-status-success">+{formatCurrency(formatUnits(mintDelta, 18))} ZCHF</span>
 				) : mintDelta < 0n ? (
-					<span className="text-red-400">{formatCurrency(formatUnits(mintDelta, 18))} ZCHF</span>
+					<span className="text-status-danger">{formatCurrency(formatUnits(mintDelta, 18))} ZCHF</span>
 				) : (
 					<span className="text-text-secondary">—</span>
 				)}
@@ -130,11 +130,11 @@ function MintingUpdateRow({ update, position, priceDigit, mintDelta, collDelta, 
 			{/* Δ Collateral */}
 			<div className="text-right">
 				{collDelta > 0n ? (
-					<span className="text-green-500">
+					<span className="text-status-success">
 						+{formatCurrency(formatUnits(collDelta, position.collateralDecimals))} {position.collateralSymbol}
 					</span>
 				) : collDelta < 0n ? (
-					<span className="text-red-400">
+					<span className="text-status-danger">
 						{formatCurrency(formatUnits(collDelta, position.collateralDecimals))} {position.collateralSymbol}
 					</span>
 				) : (

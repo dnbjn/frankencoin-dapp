@@ -404,12 +404,12 @@ export default function PositionAdjust() {
 				subtitle={`Manage your position.`}
 				badges={[
 					position.closed
-						? { label: "Closed", className: "bg-red-500/20 text-red-400" }
+						? { label: "Closed", className: "bg-status-danger-muted text-status-danger" }
 						: isCooldown
-						? { label: "Cooldown", className: "bg-amber-500/20 text-amber-400" }
-						: { label: "Active", className: "bg-green-500/20 text-green-400" },
-					{ label: `V${position.version}`, className: "bg-blue-500/20 text-blue-400" },
-					...(position.isClone ? [{ label: "Clone", className: "bg-purple-500/20 text-purple-400" }] : []),
+						? { label: "Cooldown", className: "bg-status-warning-muted text-status-warning" }
+						: { label: "Active", className: "bg-status-success-muted text-status-success" },
+					{ label: `V${position.version}`, className: "bg-status-info-muted text-status-info" },
+					...(position.isClone ? [{ label: "Clone", className: "bg-status-purple-muted text-status-purple" }] : []),
 				]}
 				actions={
 					<div className="flex flex-wrap gap-4 text-sm">
@@ -601,7 +601,7 @@ export default function PositionAdjust() {
 							<div className="flex justify-end gap-2">
 								<button
 									onClick={handleGoogleCalendar}
-									className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:text-slate-700 transition-colors"
+									className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-text-secondary bg-card-body-primary border border-card-body-seperator rounded-lg hover:bg-card-content-primary hover:text-text-primary transition-colors"
 									title="Add expiration reminder to Google Calendar"
 								>
 									<FontAwesomeIcon icon={faCalendarPlus} className="mr-2" />
@@ -609,7 +609,7 @@ export default function PositionAdjust() {
 								</button>
 								<button
 									onClick={handleDownloadCalendar}
-									className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:text-slate-700 transition-colors"
+									className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-text-secondary bg-card-body-primary border border-card-body-seperator rounded-lg hover:bg-card-content-primary hover:text-text-primary transition-colors"
 									title="Download expiration alert calendar for this position"
 								>
 									<FontAwesomeIcon icon={faCalendarDays} className="mr-2" />

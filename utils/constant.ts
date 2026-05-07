@@ -1,8 +1,7 @@
 export const SOCIAL = {
-	Github_contract: "https://github.com/Frankencoin-ZCHF/Frankencoin/",
-	Github_dapp: "https://github.com/Frankencoin-ZCHF/frankencoin-dapp",
-	Github_dapp_new_issue: "https://github.com/Frankencoin-ZCHF/frankencoin-dapp/issues/new/choose",
-	GitLab: "https://gitlab.com/frankencoin-zchf/frankencoin",
+	Github_contract: "https://github.com/dnbjn/frankencoin-dapp",
+	Github_dapp: "https://github.com/dnbjn/frankencoin-dapp",
+	Github_dapp_new_issue: "https://github.com/dnbjn/frankencoin-dapp/issues/new/choose",
 	Telegram: "https://t.me/frankencoinzchf",
 	TelegramApiBot: "https://t.me/FrankencoinApiBot",
 	Twitter: "https://twitter.com/frankencoinzchf",

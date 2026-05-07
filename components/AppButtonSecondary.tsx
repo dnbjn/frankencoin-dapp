@@ -35,7 +35,7 @@ export default function AppButtonSecondary({
 	const btnClass = `btn ${className ?? ""} ${sizeClass} ${
 		disabled || isLoading
 			? "cursor-not-allowed bg-button-disabled text-button-textdisabled"
-			: "bg-transparent border-2 border-button-disabled text-text-primary hover:border-button-hover hover:bg-button-hover hover:text-white"
+			: "bg-transparent border-2 border-button-default text-button-default hover:border-button-hover hover:bg-button-hover hover:text-white"
 	} ${width ?? "w-full"}`.trim();
 
 	const button = to ? (
@@ -57,7 +57,7 @@ export default function AppButtonSecondary({
 			{error ? (
 				<div className="flex my-2 px-3.5 text-text-warning">{error}</div>
 			) : warning ? (
-				<div className="flex my-2 px-3.5 text-amber-500">{warning}</div>
+				<div className="flex my-2 px-3.5 text-status-warning">{warning}</div>
 			) : (
 				<div className="flex my-2 px-3.5">{note}</div>
 			)}

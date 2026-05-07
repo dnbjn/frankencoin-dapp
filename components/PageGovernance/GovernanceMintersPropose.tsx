@@ -133,14 +133,14 @@ export default function GovernanceMintersPropose({}: Props) {
 					/>
 				</div>
 				<div className="text-text-secondary">
-					It is recommended to{" "}
+					It is recommended to&nbsp;
 					<AppLink
 						label="discuss"
 						href="https://github.com/Frankencoin-ZCHF/FrankenCoin/discussions"
 						external={true}
 						className=""
-					/>{" "}
-					the new module and share your thought with the{" "}
+					/>&nbsp;
+					the new module and share your thought with the&nbsp;
 					<AppLink label="community" href={SOCIAL.Telegram} external={true} className="" /> before proposing it to increase the
 					probability of passing the decentralized governance process.
 				</div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import * as React from "react";
 import { shortenHash, transactionLink } from "@utils";
 import { Abi, decodeErrorResult, Hash } from "viem";
 import { WAGMI_CHAIN } from "../app.config";
@@ -56,7 +57,7 @@ export const renderErrorTxStackToast = (error: any, limit: number) => {
 
 export const TxToast = (props: {
 	title: string;
-	rows: { title: string; value?: string | JSX.Element; hash?: Hash }[];
+	rows: { title: string; value?: string | React.JSX.Element; hash?: Hash }[];
 	success?: boolean;
 }) => {
 	const { title, rows, success = true } = props;

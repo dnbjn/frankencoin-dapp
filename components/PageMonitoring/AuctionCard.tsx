@@ -30,7 +30,7 @@ export default function AuctionCard({ position, challenge }: Props) {
 			<StatRow label="Started">{formatDate(Number(challenge.start))}</StatRow>
 
 			<div className="h-1.5 rounded-full bg-table-header-secondary overflow-hidden">
-				<div className="h-full rounded-full bg-red-400 transition-all" style={{ width: `${fillPct}%` }} />
+				<div className="h-full rounded-full bg-status-danger transition-all" style={{ width: `${fillPct}%` }} />
 			</div>
 			<div className="text-xs text-text-secondary">{formatCurrency(fillPct, 1, 1)}% filled</div>
 

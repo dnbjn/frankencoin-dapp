@@ -16,7 +16,7 @@ export default function AppLink({ label, href = "/", external = false, icon = fa
 		<Link
 			className={`${
 				className ?? "flex items-center justify-end pt-2"
-			} text-card-input-max hover:text-card-input-hover cursor-pointer`}
+			} text-link underline hover:opacity-70 cursor-pointer transition-opacity duration-200`}
 			href={href}
 			target={external ? "_blank" : undefined}
 			rel={external ? "noreferrer" : undefined}
