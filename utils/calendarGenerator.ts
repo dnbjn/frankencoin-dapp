@@ -49,7 +49,7 @@ export function generateExpirationCalendar(positions: PositionQuery[], ownerAddr
 				`Debt: ${debt} ZCHF\\n` +
 				`Reserve: ${reserve} ZCHF\\n` +
 				`Expiration: ${expirationDate.toLocaleString()}\\n\\n` +
-				`Visit: https://dev-frankencoin-dapp.dnbjn.workers.dev/mypositions/${position.position}`,
+				`Visit: https://zchf.app/mypositions/${position.position}`,
 			// 7-day reminder
 			"BEGIN:VALARM",
 			"ACTION:DISPLAY",
@@ -113,7 +113,7 @@ export function generateGoogleCalendarUrl(position: PositionQuery): string {
 	const reserve = Math.round(totalMinted * reserveContribution);
 
 	const details =
-		`One of your <a href="https://dev-frankencoin-dapp.dnbjn.workers.dev/mypositions/${position.position}"> ${position.collateralSymbol} positions</a> in the Frankencoin system expires.\n\n` +
+		`One of your <a href="https://zchf.app/mypositions/${position.position}"> ${position.collateralSymbol} positions</a> in the Frankencoin system expires.\n\n` +
 		`Collateral: ${collateralAmount} ${position.collateralSymbol}\n` +
 		`Debt: ${debt} ZCHF\n` +
 		`Reserve: ${reserve} ZCHF\n\n`;

@@ -8,7 +8,7 @@ export default function NextSeoProvider() {
 			openGraph={{
 				type: "website",
 				locale: "en_US",
-				url: "https://dev-frankencoin-dapp.dnbjn.workers.dev/",
+				url: "https://zchf.app/",
 				// images: [
 				//   {
 				//     url: "https://frankencoin.com//splash.png",

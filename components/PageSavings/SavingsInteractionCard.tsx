@@ -41,6 +41,8 @@ export default function SavingsInteractionCard() {
 	const [userSavingsReferralFees, setUserSavingsReferralFees] = useState(0n);
 	const [newReferrer, setNewReferrer] = useState<Address | undefined>(undefined);
 	const [newReferralFeePPM, setNewReferralFeePPM] = useState(0n);
+	const [referrerDismissed, setReferrerDismissed] = useState(false);
+	const [isRemovingReferrer, setIsRemovingReferrer] = useState(false);
 	const [currentTicks, setCurrentTicks] = useState(0n);
 	const [onbehalfToggle, setOnbehalfToggle] = useState(false);
 	const [onbehalfAddress, setOnbehalfAddress] = useState("");
@@ -61,9 +63,6 @@ export default function SavingsInteractionCard() {
 	const queryAddress: Address = normalizeAddress(String(router.query.address));
 	const account = isAddress(queryAddress) ? queryAddress : address ?? zeroAddress;
 
-	const queryReferrer: Address = router.query.referrer as Address;
-	const queryReferralFeePPM: string = router.query.referralFeePPM as string;
-
 	const fromSymbol = "ZCHF";
 	const change: bigint = amount - (userSavingsBalance + userSavingsInterest);
 	const direction: boolean = amount >= userSavingsBalance + userSavingsInterest;
@@ -72,21 +71,22 @@ export default function SavingsInteractionCard() {
 	// ---------------------------------------------------------------------------
 
 	useEffect(() => {
-		if (queryReferrer != undefined && queryReferrer.length != 0) {
-			if (isAddress(queryReferrer)) {
-				setNewReferrer(queryReferrer);
-				if (queryReferralFeePPM != undefined && queryReferralFeePPM.length != 0 && BigInt(queryReferralFeePPM) > 0n) {
-					setNewReferralFeePPM(BigInt(queryReferralFeePPM));
-				}
-				return;
-			}
-		}
-		// Fall back to hardcoded default referrer
+		if (referrerDismissed) return;
 		if (isAddress(SAVINGS_DEFAULT_REFERRER) && SAVINGS_DEFAULT_REFERRER !== zeroAddress) {
 			setNewReferrer(SAVINGS_DEFAULT_REFERRER);
 			setNewReferralFeePPM(SAVINGS_DEFAULT_REFERRAL_FEE_PPM);
 		}
-	}, [queryReferrer, queryReferralFeePPM]);
+	}, [referrerDismissed]);
+
+	const onRemoveReferrer = () => {
+		setIsRemovingReferrer(true);
+		setTimeout(() => {
+			setReferrerDismissed(true);
+			setNewReferrer(undefined);
+			setNewReferralFeePPM(0n);
+			setIsRemovingReferrer(false);
+		}, 200);
+	};
 
 	useEffect(() => {
 		if (!isAddress(account)) return;
@@ -259,18 +259,57 @@ export default function SavingsInteractionCard() {
 				</div>
 
 				{newReferrer ? (
-					<div className="flex mt-8">
-						<div className={`flex-1 text-text-secondary`}>
+					<div
+						className={`relative mt-8 p-4 pr-10 rounded-xl bg-card-content-primary border border-card-content-primary text-text-secondary transition-all duration-200 ${
+							isRemovingReferrer ? "opacity-0 -translate-y-1" : "opacity-100 translate-y-0"
+						}`}
+					>
+						<button
+							type="button"
+							onClick={onRemoveReferrer}
+							aria-label="Remove referrer"
+							title="Remove referrer"
+							className="absolute top-2 right-2 w-7 h-7 inline-flex items-center justify-center rounded-full text-text-secondary hover:bg-card-input-border hover:text-text-primary transition-colors"
+						>
+							<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+								<path d="M2 2 L12 12 M12 2 L2 12" />
+							</svg>
+						</button>
+						<div>
 							<span className="font-semibold">Notice: </span>
-							You are about to set a referrer{" "}
+							This app is hosted by a member of the community. A share of your earned interest goes to{" "}
 							<AppLink
 								className="pr-2"
 								label={shortenAddress(newReferrer)}
 								href={ContractUrl(newReferrer, chain)}
 								external={true}
 							/>
-							who will receive <span className="font-semibold">{Math.round(Number(newReferralFeePPM / 1000n)) / 10}%</span> of
-							your earned interest.
+							to cover infrastructure costs.
+						</div>
+						<div className="mt-3 flex flex-wrap items-center gap-2">
+							<span className="text-sm">Select share:</span>
+							{[5, 10, 15, 20, 25].map((pct) => {
+								const ppm = BigInt(pct * 10_000);
+								const selected = newReferralFeePPM === ppm;
+								const isDefault = pct === 10;
+								return (
+									<button
+										key={pct}
+										type="button"
+										onClick={() => setNewReferralFeePPM(ppm)}
+										title={isDefault ? "Default" : undefined}
+										className={`px-3 py-1 rounded-full text-sm font-semibold transition-all border-2 ${
+											selected
+												? "bg-button-default border-button-default text-white shadow-md ring-2 ring-button-default/40 scale-105"
+												: "bg-transparent border-card-input-border text-text-secondary hover:border-button-default hover:text-button-default"
+										}`}
+									>
+										{selected ? "✓ " : ""}
+										{pct}%
+										{isDefault ? <span className="ml-1 text-xs opacity-75">(default)</span> : null}
+									</button>
+								);
+							})}
 						</div>
 					</div>
 				) : null}

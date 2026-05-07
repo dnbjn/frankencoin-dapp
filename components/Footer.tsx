@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { SOCIAL } from "@utils";
+import { SOCIAL, shortenAddress } from "@utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook, faBookmark, faComments } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBookmark, faComments, faHeart, faCheck, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faTelegram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { SubmitIssue } from "./LoadingScreen";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { SAVINGS_DEFAULT_REFERRER } from "../app.config";
 
 const DynamicDocs = (): string => {
 	const p = usePathname();
@@ -28,6 +30,17 @@ const DynamicDocs = (): string => {
 
 export default function Footer() {
 	const docsLink = DynamicDocs();
+	const [copied, setCopied] = useState(false);
+
+	const onCopyDonationAddress = async () => {
+		try {
+			await navigator.clipboard.writeText(SAVINGS_DEFAULT_REFERRER);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 1500);
+		} catch {
+			// no-op
+		}
+	};
 
 	const communityLinks = [
 		{ link: SOCIAL.Twitter, name: "Twitter", icon: faXTwitter },
@@ -44,24 +57,45 @@ export default function Footer() {
 				<div className="bg-menu-back/85 backdrop-blur-xl border border-menu-separator rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] px-4 py-4 md:px-6 md:py-5">
 					<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 						{/* Community links */}
-						<div className="grid grid-cols-3 sm:flex sm:flex-wrap sm:items-center gap-1 sm:gap-1">
+						<div className="flex flex-wrap items-center gap-1">
 							{communityLinks.map(({ link, name, icon }) => (
 								<Link
 									key={name}
 									href={link}
 									target="_blank"
 									rel="noreferrer"
-									className="group flex items-center gap-2 px-2.5 py-2 rounded-xl text-sm text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150"
+									aria-label={name}
+									title={name}
+									className="group inline-flex items-center justify-center w-9 h-9 rounded-xl text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150"
 								>
-									<FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-150 group-hover:scale-110" />
-									<span>{name}</span>
+									<FontAwesomeIcon icon={icon} className="w-4 h-4 flex-shrink-0 transition-transform duration-150 group-hover:scale-110" />
 								</Link>
 							))}
 						</div>
 
-						{/* Submit issue / version */}
-						<div className="border-t border-menu-separator pt-3 sm:border-0 sm:pt-0 sm:pl-4 sm:border-l sm:border-menu-separator flex-shrink-0">
-							<SubmitIssue />
+						{/* Donate + Submit issue / version */}
+						<div className="border-t border-menu-separator pt-3 sm:border-0 sm:pt-0 sm:pl-4 sm:border-l sm:border-menu-separator flex-shrink-0 flex items-center gap-2">
+							<button
+								type="button"
+								onClick={onCopyDonationAddress}
+								title={copied ? "Address copied" : `Copy donation address ${SAVINGS_DEFAULT_REFERRER}`}
+								className="group flex items-center gap-2 px-2.5 py-2 rounded-xl text-sm text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150"
+							>
+								<FontAwesomeIcon
+									icon={copied ? faCheck : faHeart}
+									className={`w-3.5 h-3.5 flex-shrink-0 transition-transform duration-150 group-hover:scale-110 ${
+										copied ? "text-status-success" : "text-status-danger"
+									}`}
+								/>
+								<span>{copied ? "Copied" : "Donate"}</span>
+								<span className="hidden md:inline text-xs text-text-secondary font-mono">
+									{shortenAddress(SAVINGS_DEFAULT_REFERRER)}
+								</span>
+								<FontAwesomeIcon icon={faCopy} className="hidden md:inline w-3 h-3 text-text-secondary" />
+							</button>
+							<div className="border-l border-menu-separator pl-2">
+								<SubmitIssue />
+							</div>
 						</div>
 					</div>
 				</div>

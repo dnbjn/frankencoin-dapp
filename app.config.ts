@@ -30,9 +30,9 @@ export const CONFIG: ConfigEnv = {
 	verbose: false,
 
 	landing: process.env.NEXT_PUBLIC_LANDINGPAGE_URL || "https://frankencoin.com",
-	app: process.env.NEXT_PUBLIC_APP_URL || "https://dev-frankencoin-dapp.dnbjn.workers.dev",
-	api: process.env.NEXT_PUBLIC_API_URL || "https://api.frankencoin.com",
-	ponder: process.env.NEXT_PUBLIC_PONDER_URL || "https://ponder.frankencoin.com",
+	app: process.env.NEXT_PUBLIC_APP_URL || "https://zchf.app",
+	api: process.env.NEXT_PUBLIC_API_URL || "https://api.zchf.app",
+	ponder: process.env.NEXT_PUBLIC_PONDER_URL || "https://ponder.zchf.app",
 	morphoGraph: process.env.NEXT_PUBLIC_MORPHOGRAPH_URL || "https://blue-api.morpho.org/graphql",
 	wagmiId: process.env.NEXT_PUBLIC_WAGMI_ID || "3321ad5a4f22083fe6fe82208a4c9ddc",
 	rpc: process.env.NEXT_PUBLIC_RPC_KEY || "dhaKbi2HDlKYW1JaSHm1i_hGkE2gnA5t",
@@ -118,7 +118,7 @@ export const WAGMI_CONFIG = WAGMI_ADAPTER.wagmiConfig;
 
 // Default referrer for savings module — replace with your address and fee
 export const SAVINGS_DEFAULT_REFERRER: Address = "0x796A3893b883C997B083a7a7f71544F8f6ffB679";
-export const SAVINGS_DEFAULT_REFERRAL_FEE_PPM = 100000n; // 25%
+export const SAVINGS_DEFAULT_REFERRAL_FEE_PPM = 100000n; // 10%
 
 // MINT POSITION BLACKLIST
 export const MINT_POSITION_BLACKLIST: Address[] = [
