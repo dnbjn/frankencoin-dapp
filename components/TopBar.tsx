@@ -14,14 +14,14 @@ const MAIN_NAV = [
 	{ to: "/mint", name: "Borrow" },
 	{ to: "/savings", name: "Earn" },
 	{ to: "/equity", name: "Invest" },
-	{ to: "/mypositions", name: "Portfolio" },
+	{ to: "/mypositions", name: "My Positions" },
 ];
 
 const MORE_NAV = [
 	{ to: "/transfer", name: "Transfer" },
 	{ to: "/monitoring", name: "Monitoring" },
 	{ to: "/governance", name: "Governance" },
-	{ to: "/report", name: "Report" },
+	{ to: "/report", name: "Accounting Report" },
 ];
 
 export default function TopBar() {

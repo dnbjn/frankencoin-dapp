@@ -23,14 +23,14 @@ const MAIN_ITEMS = [
 	{ to: "/mint", name: "Borrow", icon: faCoins },
 	{ to: "/savings", name: "Earn", icon: faSeedling },
 	{ to: "/equity", name: "Invest", icon: faChartLine },
-	{ to: "/mypositions", name: "Portfolio", icon: faWallet },
+	{ to: "/mypositions", name: "My Positions", icon: faWallet },
 ];
 
 const MORE_ITEMS = [
 	{ to: "/transfer", name: "Transfer", icon: faRightLeft },
 	{ to: "/monitoring", name: "Monitoring", icon: faEye },
 	{ to: "/governance", name: "Governance", icon: faLandmark },
-	{ to: "/report", name: "Report", icon: faFileLines },
+	{ to: "/report", name: "Accounting Report", icon: faFileLines },
 ];
 
 function DrawerItem({
