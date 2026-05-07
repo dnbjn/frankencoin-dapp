@@ -91,6 +91,7 @@ module.exports = {
 					textdisabled: "var(--color-button-textdisabled)",
 				},
 				link: "var(--color-link)",
+				dashed: "var(--color-separator)",
 				status: {
 					danger: "var(--color-status-danger)",
 					"danger-muted": "var(--color-status-danger-muted)",

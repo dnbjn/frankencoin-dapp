@@ -130,7 +130,7 @@ export default function TokenInput({
 						{canShowButtons && min != undefined && min != BigInt(value) && min != max && (
 							<button
 								type="button"
-								className="text-xs px-2 py-0.5 rounded-full border border-card-body-seperator bg-card-content-primary text-card-input-min hover:border-link hover:text-link transition-colors cursor-pointer font-medium"
+								className="text-card-input-min cursor-pointer hover:text-card-input-focus font-extrabold"
 								onClick={() => { if (min !== undefined) { onChange(min.toString()); onMin(); } }}
 							>
 								Min
@@ -139,7 +139,7 @@ export default function TokenInput({
 						{canShowButtons && reset != undefined && reset != BigInt(value) && reset != min && reset != max && (
 							<button
 								type="button"
-								className="text-xs px-2 py-0.5 rounded-full border border-card-body-seperator bg-card-content-primary text-card-input-reset hover:border-link hover:text-link transition-colors cursor-pointer font-medium"
+								className="text-card-input-reset cursor-pointer hover:text-card-input-focus font-extrabold"
 								onClick={() => { if (reset !== undefined) { onChange(reset.toString()); onReset(); } }}
 							>
 								Reset
@@ -148,7 +148,7 @@ export default function TokenInput({
 						{canShowButtons && max != undefined && max != BigInt(value) && (
 							<button
 								type="button"
-								className="text-xs px-2 py-0.5 rounded-full border border-card-body-seperator bg-card-content-primary text-card-input-max hover:border-link hover:text-link transition-colors cursor-pointer font-medium"
+								className="text-card-input-max cursor-pointer hover:text-card-input-focus font-extrabold"
 								onClick={() => { if (max !== undefined) { onChange(max.toString()); onMax(); } }}
 							>
 								Max

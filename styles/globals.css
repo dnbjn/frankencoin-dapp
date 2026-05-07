@@ -72,6 +72,8 @@
 	--color-status-orange: #ea580c;
 	--color-status-purple: #9333ea;
 	--color-status-purple-muted: rgba(147, 51, 234, 0.1);
+
+	--color-separator: #111111;
 }
 
 /* Dark mode */
@@ -103,9 +105,9 @@
 	--color-card-input-error: #f87171;
 	--color-card-input-border: #2d2d2d;
 	--color-card-input-hover: var(--color-link);
-	--color-card-input-min: #60a5fa;
-	--color-card-input-max: #60a5fa;
-	--color-card-input-reset: #60a5fa;
+	--color-card-input-min: #f9fafb;
+	--color-card-input-max: #f9fafb;
+	--color-card-input-reset: #f9fafb;
 
 	--color-card-body-primary: hsl(var(--bg-200) / var(--tw-bg-opacity));
 	--color-card-body-secondary: #1e3a8a;
@@ -147,6 +149,8 @@
 	--color-status-orange: #fb923c;
 	--color-status-purple: #c084fc;
 	--color-status-purple-muted: rgba(192, 132, 252, 0.15);
+
+	--color-separator: #f9fafb;
 }
 
 
