@@ -20,6 +20,8 @@ import { useRouter } from "next/router";
 import AppLink from "@components/AppLink";
 import { AppKitNetwork } from "@reown/appkit/networks";
 import { useAppKitNetwork } from "@reown/appkit/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHandHoldingHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function SavingsInteractionCard() {
 	const { status } = useSelector((state: RootState) => state.savings.savingsInfo);
@@ -260,7 +262,7 @@ export default function SavingsInteractionCard() {
 
 				{newReferrer ? (
 					<div
-						className={`relative mt-8 p-4 pr-10 rounded-xl bg-card-content-primary border border-card-content-primary text-text-secondary transition-all duration-200 ${
+						className={`relative mt-8 p-4 pr-10 rounded-2xl bg-status-success/5 border border-status-success/20 transition-all duration-200 ${
 							isRemovingReferrer ? "opacity-0 -translate-y-1" : "opacity-100 translate-y-0"
 						}`}
 					>
@@ -275,41 +277,60 @@ export default function SavingsInteractionCard() {
 								<path d="M2 2 L12 12 M12 2 L2 12" />
 							</svg>
 						</button>
-						<div>
-							<span className="font-semibold">Notice: </span>
-							This app is hosted by a member of the community. A share of your earned interest goes to{" "}
-							<AppLink
-								className="pr-2"
-								label={shortenAddress(newReferrer)}
-								href={ContractUrl(newReferrer, chain)}
-								external={true}
-							/>
-							to cover infrastructure costs.
+
+						<div className="flex items-start gap-3">
+							<div className="flex-shrink-0 w-9 h-9 rounded-full bg-status-success/15 inline-flex items-center justify-center">
+								<FontAwesomeIcon icon={faHandHoldingHeart} className="w-4 h-4 text-status-success" />
+							</div>
+							<div className="flex-1">
+								<div className="font-semibold text-text-primary">Support the host</div>
+								<div className="text-sm text-text-secondary mt-1">
+									This app is run by a community member. Your deposit stays 100% yours — only a slice of the interest you earn supports him. Pick what feels fair. Goes to{" "}
+									<AppLink
+										label={shortenAddress(newReferrer)}
+										href={ContractUrl(newReferrer, chain)}
+										external={true}
+									/>
+									.
+								</div>
+							</div>
 						</div>
-						<div className="mt-3 flex flex-wrap items-center gap-2">
-							<span className="text-sm">Select share:</span>
-							{[5, 10, 15, 20, 25].map((pct) => {
-								const ppm = BigInt(pct * 10_000);
-								const selected = newReferralFeePPM === ppm;
-								const isDefault = pct === 10;
-								return (
-									<button
-										key={pct}
-										type="button"
-										onClick={() => setNewReferralFeePPM(ppm)}
-										title={isDefault ? "Default" : undefined}
-										className={`px-3 py-1 rounded-full text-sm font-semibold transition-all border-2 ${
-											selected
-												? "bg-button-default border-button-default text-white shadow-md ring-2 ring-button-default/40 scale-105"
-												: "bg-transparent border-card-input-border text-text-secondary hover:border-button-default hover:text-button-default"
-										}`}
-									>
-										{selected ? "✓ " : ""}
-										{pct}%
-										{isDefault ? <span className="ml-1 text-xs opacity-75">(default)</span> : null}
-									</button>
-								);
-							})}
+
+						<div className="mt-5">
+							<div className="grid grid-cols-5 gap-2">
+								{[5, 10, 15, 20, 25].map((pct) => {
+									const ppm = BigInt(pct * 10_000);
+									const selected = newReferralFeePPM === ppm;
+									const isDefault = pct === 10;
+									return (
+										<button
+											key={pct}
+											type="button"
+											onClick={() => setNewReferralFeePPM(ppm)}
+											title={isDefault ? "Recommended default" : undefined}
+											className={`flex items-center justify-center gap-1 px-2 py-2 rounded-xl border transition-all ${
+												selected
+													? "bg-button-default border-button-default text-white ring-2 ring-button-default/30"
+													: "bg-card-body-primary border-card-input-border text-text-primary hover:border-button-default hover:text-button-default"
+											}`}
+										>
+											<span className="text-base font-semibold leading-none">{pct}%</span>
+											{isDefault ? (
+												<span
+													aria-label="Recommended"
+													className={`text-xs leading-none ${selected ? "text-white/90" : "text-status-success"}`}
+												>
+													★
+												</span>
+											) : null}
+										</button>
+									);
+								})}
+							</div>
+							<div className="mt-3 flex items-center gap-1.5 text-xs text-text-secondary">
+								<span className="text-status-success">★</span>
+								<span>Recommended default. You can change or remove this anytime.</span>
+							</div>
 						</div>
 					</div>
 				) : null}
