@@ -63,5 +63,4 @@ Copy `.env.example` to `.env.local` and configure:
 
 ## Deployment
 
--   `main` branch → app.frankencoin.com
--   `...` branch → app.test.frankencoin.com
+-   `main` branch → zchf.app
