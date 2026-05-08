@@ -26,11 +26,14 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 	render() {
 		if (this.state.hasError) {
 			return (
-				<div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center">
-					<div className="text-xl font-bold text-text-primary">Something went wrong</div>
-					<div className="text-text-secondary text-sm max-w-md">{this.state.error?.message ?? "An unexpected error occurred."}</div>
+				<div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center bg-layout-primary">
+					<div className="text-xl font-bold text-text-header">Something went wrong</div>
+					<div className="text-text-secondary text-sm max-w-md">
+						We couldn&apos;t load this page. This is usually a temporary issue with our data service. Please try again in a
+						moment, and if the problem persists, refresh the page or come back later.
+					</div>
 					<button
-						className="px-4 py-2 rounded bg-card-content-primary text-white text-sm"
+						className="btn px-4 py-2 bg-button-default text-white hover:bg-button-hover text-sm"
 						onClick={() => this.setState({ hasError: false, error: null })}
 					>
 						Try again
