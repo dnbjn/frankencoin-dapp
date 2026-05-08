@@ -14,7 +14,7 @@ export function useServiceStatus(): Loading[] {
 		fetch(`${CONFIG.api}/status`)
 			.then((res) => res.json())
 			.then((data: { dataSources?: { primary?: any; backup?: any } }) => {
-				if (data?.dataSources?.primary || data?.dataSources?.backup) {
+				if (data?.dataSources?.primary?.status === 'healthy' || data?.dataSources?.backup?.status === 'healthy') {
 					return setPonderStatus(true);
 				}
 				return setPonderStatus(false);
