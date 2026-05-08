@@ -52,12 +52,12 @@ export default function Footer() {
 	];
 
 	return (
-		<footer className="w-full px-4 md:px-6 pb-4 pt-2">
+		<footer className="w-full px-3 md:px-6 pb-4 pt-2">
 			<div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
-				<div className="bg-menu-back/85 backdrop-blur-xl border border-menu-separator rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] px-4 py-4 md:px-6 md:py-5">
-					<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+				<div className="bg-menu-back/85 backdrop-blur-xl border border-menu-separator rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] px-3 py-3 md:px-6 md:py-5">
+					<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
 						{/* Community links */}
-						<div className="flex flex-wrap items-center gap-1">
+						<div className="flex flex-wrap items-center justify-center sm:justify-start gap-1">
 							{communityLinks.map(({ link, name, icon }) => (
 								<Link
 									key={name}
@@ -66,7 +66,7 @@ export default function Footer() {
 									rel="noreferrer"
 									aria-label={name}
 									title={name}
-									className="group inline-flex items-center justify-center w-9 h-9 rounded-xl text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150"
+									className="group inline-flex items-center justify-center w-10 h-10 sm:w-9 sm:h-9 rounded-xl text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150"
 								>
 									<FontAwesomeIcon icon={icon} className="w-4 h-4 flex-shrink-0 transition-transform duration-150 group-hover:scale-110" />
 								</Link>
@@ -74,7 +74,7 @@ export default function Footer() {
 						</div>
 
 						{/* Donate + Submit issue / version */}
-						<div className="border-t border-menu-separator pt-3 sm:border-0 sm:pt-0 sm:pl-4 sm:border-l sm:border-menu-separator flex-shrink-0 flex items-center gap-2">
+						<div className="border-t border-menu-separator pt-3 sm:border-0 sm:pt-0 sm:pl-4 sm:border-l sm:border-menu-separator flex-shrink-0 flex flex-wrap items-center justify-center sm:justify-end gap-x-2 gap-y-1">
 							<button
 								type="button"
 								onClick={onCopyDonationAddress}
@@ -93,7 +93,7 @@ export default function Footer() {
 								</span>
 								<FontAwesomeIcon icon={faCopy} className="hidden md:inline w-3 h-3 text-text-secondary" />
 							</button>
-							<div className="border-l border-menu-separator pl-2">
+							<div className="sm:border-l sm:border-menu-separator sm:pl-2">
 								<SubmitIssue />
 							</div>
 						</div>
