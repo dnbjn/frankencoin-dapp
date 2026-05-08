@@ -15,7 +15,6 @@ export type ConfigEnv = {
 	landing: string;
 	app: string;
 	api: string;
-	ponder: string;
 	morphoGraph: string;
 	rpc: string;
 	wagmiId: string;
@@ -32,7 +31,6 @@ export const CONFIG: ConfigEnv = {
 	landing: process.env.NEXT_PUBLIC_LANDINGPAGE_URL || "https://frankencoin.com",
 	app: process.env.NEXT_PUBLIC_APP_URL || "https://zchf.app",
 	api: process.env.NEXT_PUBLIC_API_URL || "https://api.zchf.app",
-	ponder: process.env.NEXT_PUBLIC_PONDER_URL || "https://ponder.zchf.app",
 	morphoGraph: process.env.NEXT_PUBLIC_MORPHOGRAPH_URL || "https://blue-api.morpho.org/graphql",
 	wagmiId: process.env.NEXT_PUBLIC_WAGMI_ID || "3321ad5a4f22083fe6fe82208a4c9ddc",
 	rpc: process.env.NEXT_PUBLIC_RPC_KEY || "dhaKbi2HDlKYW1JaSHm1i_hGkE2gnA5t",
@@ -43,9 +41,9 @@ if (CONFIG.verbose) {
 	console.log(CONFIG);
 }
 
-// PONDER CLIENT
+// PONDER CLIENT (routed through frankencoin-api)
 export const PONDER_CLIENT = new ApolloClient({
-	link: new HttpLink({ uri: CONFIG.ponder }),
+	link: new HttpLink({ uri: `${CONFIG.api}/graphql` }),
 	cache: new InMemoryCache(),
 });
 

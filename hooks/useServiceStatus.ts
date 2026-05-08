@@ -11,8 +11,15 @@ export function useServiceStatus(): Loading[] {
 			.then((res) => setApiStatus(res.ok))
 			.catch(() => setApiStatus(false));
 
-		fetch(`${CONFIG.ponder}/status`)
-			.then((res) => setPonderStatus(res.ok))
+		fetch(`${CONFIG.api}/status`)
+			.then((res) => res.json())
+			.then((data: { dataSources?: { primary?: any; backup?: any } }) => {
+				if (data?.dataSources?.primary || data?.dataSources?.backup) {
+					return setPonderStatus(true);
+				}
+				return setPonderStatus(false);
+			})
+
 			.catch(() => setPonderStatus(false));
 	}, []);
 
