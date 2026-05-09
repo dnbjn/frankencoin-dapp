@@ -93,6 +93,13 @@ export default function Footer() {
 								</span>
 								<FontAwesomeIcon icon={faCopy} className="hidden md:inline w-3 h-3 text-text-secondary" />
 							</button>
+							<Link
+								href="/disclaimer"
+								title="Disclaimer"
+								className="px-2.5 py-2 rounded-xl text-sm text-menu-text hover:text-menu-textactive hover:bg-menu-hover transition-all duration-150 sm:border-l sm:border-menu-separator sm:pl-3 sm:rounded-l-none"
+							>
+								Disclaimer
+							</Link>
 							<div className="sm:border-l sm:border-menu-separator sm:pl-2">
 								<SubmitIssue />
 							</div>
