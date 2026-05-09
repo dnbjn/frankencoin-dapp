@@ -41,14 +41,12 @@
 	},
 	"routes": [
 		{
-			"pattern": "zchf.app/*",
-			"zone_name": "zchf.app",
+			"pattern": "zchf.app",
 			"custom_domain": true
 		},
 		{
-			"pattern": "www.zchf.app/*",
-			"zone_name": "zchf.app",
+			"pattern": "www.zchf.app",
 			"custom_domain": true
 		}
-	],
+	]
 }

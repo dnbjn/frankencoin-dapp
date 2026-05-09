@@ -15,6 +15,9 @@ import { store } from "../redux/redux.store";
 import { MORPHOGRAPH_CLIENT, PONDER_CLIENT } from "../app.config";
 import BlockUpdater from "@components/BlockUpdater";
 import USGovSanctionList from "@components/USGovSanctionList";
+import { setupApiInterceptors } from "../utils/apiInterceptors";
+
+setupApiInterceptors();
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
