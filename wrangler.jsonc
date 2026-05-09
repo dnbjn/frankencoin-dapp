@@ -38,5 +38,17 @@
 			"persist": true,
 			"head_sampling_rate": 1
 		}
-	}
+	},
+	"routes": [
+		{
+			"pattern": "zchf.app/*",
+			"zone_name": "zchf.app",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.zchf.app/*",
+			"zone_name": "zchf.app",
+			"custom_domain": true
+		}
+	],
 }
