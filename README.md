@@ -1,8 +1,8 @@
 # Frankencoin DApp
 
-Frontend for the [Frankencoin](https://frankencoin.com) protocol — a decentralized, oracle-free, collateral-backed stablecoin (ZCHF) on Ethereum.
+Alternative Frontend for the [Frankencoin](https://frankencoin.com) protocol — a decentralized, oracle-free, collateral-backed stablecoin (ZCHF) on Ethereum.
 
-Built with Next.js 14,  TailwindCSS, wagmi, and viem. Deployed as a Cloudflare Worker via [OpenNext](https://opennext.js.org/cloudflare).
+Built with Next.js 14,  TailwindCSS, wagmi, and viem.
 
 ## Requirements
 
@@ -44,10 +44,8 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Production build
 
 ```bash
-yarn build         # Next.js production build
-yarn preview       # Build + run the Cloudflare Worker locally
-yarn deploy        # Build, upload, and activate on Cloudflare
-yarn upload        # Build and upload as a preview-only version
+yarn build
+yarn start
 ```
 
 `yarn deploy` ships to production traffic immediately. `yarn upload` stages a new worker version without flipping the switch — useful for staged rollouts.`.
