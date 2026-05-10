@@ -3,6 +3,7 @@ import { ADDRESS, ChainId, SupportedChain, SupportedChains } from "@frankencoin/
 import { CONFIG, WAGMI_CHAIN, WAGMI_CHAINS } from "../app.config";
 import path from "path";
 import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 export const AppUrl = (url: string) => {
 	return path.join(CONFIG.app, url);
@@ -34,6 +35,10 @@ export const getChainByChainSelector = (selector: string | bigint) => {
 	return getChain(Number(chainId) as ChainId);
 };
 
-export function showErrorToast({ module, message, error }: { module?: string; message: string; error: unknown }) {
+export function showErrorToast({ module, message, error }: { module?: string; message: string; error: AxiosError | Error | unknown }) {
+	if (error instanceof AxiosError && error.response?.status === 429) {
+		toast.error(`You’re sending requests too quickly. Please wait 10 seconds before trying again`, { position: "bottom-right" });
+		return;
+	}
 	toast.error(`${module ?? "API Error:"} ${message}\n${error}`, { position: "bottom-right" });
 }

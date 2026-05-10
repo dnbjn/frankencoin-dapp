@@ -2,7 +2,7 @@
 
 Frontend for the [Frankencoin](https://frankencoin.com) protocol — a decentralized, oracle-free, collateral-backed stablecoin (ZCHF) on Ethereum.
 
-Built with Next.js 15, React 19, TailwindCSS, wagmi, and viem. Deployed as a Cloudflare Worker via [OpenNext](https://opennext.js.org/cloudflare).
+Built with Next.js 14,  TailwindCSS, wagmi, and viem. Deployed as a Cloudflare Worker via [OpenNext](https://opennext.js.org/cloudflare).
 
 ## Requirements
 

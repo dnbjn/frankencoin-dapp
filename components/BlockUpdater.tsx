@@ -19,7 +19,6 @@ import { mainnet } from "viem/chains";
 let initializing: boolean = false;
 let initStart: number = 0;
 let initBreakerMS: number = 15000;
-const INIT_BREAKER_CEILING_MS = 90000; // hard upper bound — we never wait longer than this even if throttled
 let loading: boolean = false;
 
 export default function BockUpdater({ children }: { children?: React.ReactElement | React.ReactElement[] }) {
@@ -35,7 +34,6 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 
 	const serviceStatus = useServiceStatus();
 
-	const throttledUntil: number | null = useSelector((state: RootState) => state.rateLimit.throttledUntil);
 	const loadedEcosystem: boolean = useSelector((state: RootState) => state.ecosystem.loaded);
 	const loadedPositions: boolean = useSelector((state: RootState) => state.positions.loaded);
 	const loadedPrices: boolean = useSelector((state: RootState) => state.prices.loaded);
@@ -45,16 +43,8 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 	const loadedSavings: boolean = useSelector((state: RootState) => state.savings.savingsLoaded);
 
 	const timeToBreakLoading = () => {
-		const now = Date.now();
-		// Default breaker target.
-		let breakerTarget = initStart + initBreakerMS;
-		// If we're throttled, push the breaker out until the throttle window
-		// clears (plus a small buffer for the in-flight retry to resolve),
-		// capped at INIT_BREAKER_CEILING_MS so we never wait forever.
-		if (throttledUntil !== null && throttledUntil > breakerTarget) {
-			breakerTarget = Math.min(throttledUntil + 1500, initStart + INIT_BREAKER_CEILING_MS);
-		}
-		return Math.max(0, breakerTarget - now);
+		const delay = Date.now() - initStart;
+		return delay > initBreakerMS ? 0 : initBreakerMS - delay;
 	};
 
 	// --------------------------------------------------------------------------------
@@ -65,7 +55,7 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 		initializing = true;
 		initStart = Date.now();
 
-		CONFIG.verbose && console.log(`Init [BlockUpdater]: Start loading application data... ${initStart}`);
+		console.log(`Init [BlockUpdater]: Start loading application data... ${initStart}`);
 		store.dispatch(fetchEcosystem());
 		store.dispatch(fetchPositionsList());
 		store.dispatch(fetchPricesList());
@@ -82,7 +72,7 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 		if (initialized) return;
 
 		if (loadedEcosystem && loadedPositions && loadedPrices && loadedChallenges && loadedBids && loadedLeadrate && loadedSavings) {
-			CONFIG.verbose && console.log(`Init [BlockUpdater]: Done. ${Date.now() - initStart} ms`);
+			console.log(`Init [BlockUpdater]: Done. ${Date.now() - initStart} ms`);
 			setInitialized(true);
 			return;
 		}
@@ -90,12 +80,12 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 		// Breaker: force initialized after timeout even if not all data loaded
 		const remaining = timeToBreakLoading();
 		const timer = setTimeout(() => {
-			CONFIG.verbose && console.warn(`Init [BlockUpdater]: Breaker triggered after ${initBreakerMS} ms. Forcing app to continue.`);
+			console.warn(`Init [BlockUpdater]: Breaker triggered after ${initBreakerMS} ms. Forcing app to continue.`);
 			setInitialized(true);
 		}, remaining);
 
 		return () => clearTimeout(timer);
-	}, [initialized, loadedPositions, loadedPrices, loadedEcosystem, loadedChallenges, loadedBids, loadedLeadrate, loadedSavings, throttledUntil]);
+	}, [initialized, loadedPositions, loadedPrices, loadedEcosystem, loadedChallenges, loadedBids, loadedLeadrate, loadedSavings]);
 
 	// --------------------------------------------------------------------------------
 	// Bock update policies
@@ -117,23 +107,18 @@ export default function BockUpdater({ children }: { children?: React.ReactElemen
 
 		// Block update policy: EACH 10 BLOCKS
 		if (fetchedLatestHeight >= latestHeight10 + 10) {
-			const isThrottled = throttledUntil !== null && Date.now() < throttledUntil;
-			if (isThrottled) {
-				CONFIG.verbose && console.log(`Policy [BlockUpdater]: Skipping 10-block refetch — rate-limited until ${throttledUntil}`);
-			} else {
-				CONFIG.verbose && console.log(`Policy [BlockUpdater]: EACH 10 BLOCKS ${fetchedLatestHeight}`);
-				store.dispatch(fetchPositionsList());
-				store.dispatch(fetchChallengesList());
-				store.dispatch(fetchBidsList());
-				store.dispatch(fetchPricesList());
-				store.dispatch(fetchEcosystem());
-				setLatestHeight10(fetchedLatestHeight);
-			}
+			CONFIG.verbose && console.log(`Policy [BlockUpdater]: EACH 10 BLOCKS ${fetchedLatestHeight}`);
+			store.dispatch(fetchPositionsList());
+			store.dispatch(fetchChallengesList());
+			store.dispatch(fetchBidsList());
+			store.dispatch(fetchPricesList());
+			store.dispatch(fetchEcosystem());
+			setLatestHeight10(fetchedLatestHeight);
 		}
 
 		// Unlock block updates
 		loading = false;
-	}, [initialized, error, data, latestHeight, latestHeight10, latestAddress, throttledUntil]);
+	}, [initialized, error, data, latestHeight, latestHeight10, latestAddress]);
 
 	// --------------------------------------------------------------------------------
 	// Connected to correct chain changes

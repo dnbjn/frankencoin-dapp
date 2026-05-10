@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
-const CHAIN_EXT: Record<string, string> = JSON.parse(process.env.ASSET_CHAIN_EXT || "{}");
 
 interface Props {
 	chain: string;
@@ -9,22 +8,29 @@ interface Props {
 }
 
 export default function ChainLogo({ chain, size = 8 }: Props) {
-	const [failed, setFailed] = useState(false);
-	const key = chain?.toLowerCase();
-	const ext = CHAIN_EXT[key];
+	const [imgExist, setImgExist] = useState(true);
+	const [src, setSrc] = useState(`/coin/${chain?.toLowerCase()}.svg`);
+	const onImageError = (e: any) => {
+		const src = e.target.src;
+		if (src.includes(".svg")) {
+			setSrc(src.replace(".svg", ".png"));
+		} else if (src.includes(".png")) {
+			setSrc(src.replace(".png", ".jpeg"));
+		} else {
+			setImgExist(false);
+		}
+	};
 
-	if (!ext || failed) {
-		return <FontAwesomeIcon icon={faCircleQuestion} className={`w-${size} h-${size} mr-2`} />;
-	}
+	useEffect(() => {
+		setSrc(`/chain/${chain?.toLowerCase()}.svg`);
+		setImgExist(true);
+	}, [chain]);
 
-	return (
+	return imgExist ? (
 		<picture className=" relative">
-			<img
-				src={`/chain/${key}.${ext}`}
-				className={`w-${size} h-${size} rounded-full`}
-				alt="chain-logo"
-				onError={() => setFailed(true)}
-			/>
+			<img src={src} className={`w-${size} h-${size} rounded-full`} alt="token-logo" onError={onImageError} />
 		</picture>
+	) : (
+		<FontAwesomeIcon icon={faCircleQuestion} className={`w-${size} h-${size} mr-2`} />
 	);
 }
