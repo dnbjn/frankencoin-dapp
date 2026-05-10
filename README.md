@@ -48,8 +48,6 @@ yarn build
 yarn start
 ```
 
-`yarn deploy` ships to production traffic immediately. `yarn upload` stages a new worker version without flipping the switch — useful for staged rollouts.`.
-
 ## Adding a New Collateral Token
 
 1. Add the token logo (`svg` or `png`) to `public/coin/` — filename must be lowercase and match the token symbol exactly, e.g. `public/coin/wbtc.svg`.

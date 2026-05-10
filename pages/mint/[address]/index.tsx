@@ -123,8 +123,6 @@ export default function PositionBorrow({}) {
 		fetchAsync();
 	}, [data, account.address, position, chainId]);
 
-	const positionExplorerUrl = useContractUrl(String(addressQuery));
-
 	// don't continue if position not loaded correctly
 	if (!position) return null;
 
