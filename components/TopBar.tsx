@@ -73,6 +73,7 @@ export default function TopBar() {
 										? "bg-menu-active text-menu-textactive"
 										: "text-menu-text hover:bg-menu-hover hover:text-menu-textactive"
 								}`}
+								target="_self"
 							>
 								{name}
 								{active && (
@@ -112,6 +113,7 @@ export default function TopBar() {
 													? "bg-menu-active text-menu-textactive font-medium"
 													: "text-menu-text hover:bg-menu-hover hover:text-menu-textactive"
 											}`}
+											target="_self"
 										>
 											{name}
 										</Link>

@@ -56,6 +56,7 @@ function DrawerItem({
 					? "bg-menu-active text-menu-textactive font-semibold"
 					: "text-menu-text hover:bg-menu-hover hover:text-menu-textactive"
 			}`}
+			target="_self"
 		>
 			<FontAwesomeIcon icon={icon} className="w-4 h-4 flex-shrink-0" />
 			{name}

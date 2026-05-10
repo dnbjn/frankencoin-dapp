@@ -31,7 +31,7 @@ Frontend for the Frankencoin protocol — a decentralized, collateral-backed sta
 General-purpose components at `components/` root level — always prefer these over building new ones:
 
 -   **Layout**: `AppCard`, `AppBox`, `AppForm`, `AppTitle`, `AppHeroSteps`
--   **Buttons**: `AppButton`, `AppButtonSecondary`, `AppToggle`, `AppLink`, `NavButton`
+-   **Buttons**: `AppButton`, `AppButtonSecondary`, `AppToggle`, `AppLink`
 -   **Display**: `DisplayAmount`, `DisplayLabel`, `DisplayOutputAlignedRight`
 -   **Identity**: `TokenLogo`, `ChainLogo`, `AddressLabel`, `AppIcon`
 -   **Feedback**: `LoadingScreen`, `LoadingSpin`, `TxToast`
