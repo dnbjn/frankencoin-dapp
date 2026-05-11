@@ -112,14 +112,6 @@ export default function MobileDrawer() {
 						<DrawerItem key={item.to} {...item} onClose={close} />
 					))}
 				</nav>
-
-				{/* Footer */}
-				<div className="px-5 py-4 border-t border-menu-separator">
-					<div className="flex items-center gap-2">
-						<DarkModeToggle />
-						<span className="text-sm text-menu-text">Toggle theme</span>
-					</div>
-				</div>
 			</aside>
 		</>
 	);
