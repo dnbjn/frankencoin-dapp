@@ -123,7 +123,7 @@ function MintingUpdateRow({ update, position, priceDigit, mintDelta, collDelta, 
 				) : mintDelta < 0n ? (
 					<span className="text-status-danger">{formatCurrency(formatUnits(mintDelta, 18))} ZCHF</span>
 				) : (
-					<span className="text-text-secondary">—</span>
+					<span>—</span>
 				)}
 			</div>
 
@@ -138,7 +138,7 @@ function MintingUpdateRow({ update, position, priceDigit, mintDelta, collDelta, 
 						{formatCurrency(formatUnits(collDelta, position.collateralDecimals))} {position.collateralSymbol}
 					</span>
 				) : (
-					<span className="text-text-secondary">—</span>
+					<span>—</span>
 				)}
 			</div>
 
